@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FintechToken — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:      #080C14;
+      --surface: #0F1724;
+      --surface2:#131D2E;
+      --border:  #1C2A3E;
+      --teal:    #0FF4C6;
+      --gold:    #F5A623;
+      --red:     #FF4D6D;
+      --green:   #10B981;
+      --blue:    #0EA5E9;
+      --purple:  #8B5CF6;
+      --white:   #E8F0FE;
+      --gray:    #4A5568;
+      --gray2:   #2D3748;
+      --mono:    'Space Mono', monospace;
+      --sans:    'Syne', sans-serif;
+      --sidebar: 240px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); font-family:var(--sans); color:var(--white); min-height:100vh; display:flex; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+    }
+    .sidebar-logo {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .sidebar-logo .icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--bg); font-weight: 700;
+    }
+    .sidebar-logo span {
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--white);
+    }
+    .sidebar-logo span em { color: var(--teal); font-style: normal; }
+
+    .nav { flex: 1; padding: 1rem 0; }
+    .nav-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--gray);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1.5rem;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+    .nav-item.active { color: var(--teal); border-left-color: var(--teal); background: rgba(15,244,198,0.05); }
+    .nav-item .icon { font-size: 1.1rem; width: 22px; text-align: center; }
+
+    .sidebar-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .wallet-badge {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+    .wallet-badge .label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .wallet-badge .addr {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--teal);
+      margin-top: 0.2rem;
+    }
+    .logout-btn {
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.55rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--gray);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .topbar-title { font-size: 1.1rem; font-weight: 800; }
+    .topbar-title span { color: var(--teal); }
+    .topbar-right { display: flex; align-items: center; gap: 1rem; }
+    .network-badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+    }
+    .network-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* Content */
+    .content { padding: 2rem; flex: 1; }
+
+    /* Stats cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-2px); border-color: var(--gray2); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .stat-card.teal::before   { background: linear-gradient(90deg, var(--teal), var(--blue)); }
+    .stat-card.gold::before   { background: linear-gradient(90deg, var(--gold), #F97316); }
+    .stat-card.red::before    { background: linear-gradient(90deg, var(--red), var(--purple)); }
+    .stat-card.green::before  { background: linear-gradient(90deg, var(--green), var(--teal)); }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .stat-value {
+      font-family: var(--mono);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-sub {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--gray);
+    }
+    .stat-icon {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      font-size: 1.5rem;
+      opacity: 0.2;
+    }
+
+    /* Grid layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .grid-3-1 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Panels */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .panel-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .panel-sub {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gray);
+    }
+    .panel-body { padding: 1.5rem; }
+
+    /* Send form */
+    .send-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    input, select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus { border-color: var(--teal); }
+    input::placeholder { color: var(--gray); }
+
+    .btn-send {
+      padding: 0.8rem;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border: none;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--bg);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-send:hover { opacity: 0.85; }
+    .btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Transaction result */
+    .tx-result {
+      display: none;
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .tx-result.success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--green); }
+    .tx-result.blocked { background: rgba(255,77,109,0.1);  border: 1px solid rgba(255,77,109,0.3);  color: var(--red); }
+
+    /* Recent transactions */
+    .tx-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .tx-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.15s;
+    }
+    .tx-item:hover { border-color: var(--gray2); }
+    .tx-badge {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .tx-badge.legit  { background: rgba(16,185,129,0.15); }
+    .tx-badge.fraud  { background: rgba(255,77,109,0.15); }
+    .tx-info { flex: 1; min-width: 0; }
+    .tx-addr {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tx-time {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gray);
+      margin-top: 0.15rem;
+    }
+    .tx-amount {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: right;
+    }
+    .tx-amount.legit { color: var(--green); }
+    .tx-amount.fraud { color: var(--red); }
+    .tx-risk {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+    .tx-risk.LOW      { background: rgba(16,185,129,0.15); color: var(--green); }
+    .tx-risk.MEDIUM   { background: rgba(245,166,35,0.15);  color: var(--gold); }
+    .tx-risk.HIGH     { background: rgba(249,115,22,0.15);  color: #F97316; }
+    .tx-risk.CRITICAL { background: rgba(255,77,109,0.15);  color: var(--red); }
+
+    /* AI score gauge */
+    .gauge-container { text-align: center; padding: 1rem 0; }
+    .gauge-value {
+      font-family: var(--mono);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .gauge-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: var(--gray);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      gap: 0.5rem;
+    }
+    .loading::before {
+      content: '';
+      width: 14px; height: 14px;
+      border: 2px solid var(--border);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .empty {
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="icon">₮</div>
+    <span>Fintech<em>Token</em></span>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-label">Principal</div>
+    <a class="nav-item active" href="/dashboard">
+      <span class="icon">◈</span> Dashboard
+    </a>
+    <a class="nav-item" href="/transactions">
+      <span class="icon">⇄</span> Transactions
+    </a>
+    <a class="nav-item" href="/fraudes">
+      <span class="icon">⚠</span> Alertes Fraude
+    </a>
+
+    <div class="nav-label">Blockchain</div>
+    <a class="nav-item" href="/token">
+      <span class="icon">◎</span> Token FTK
+    </a>
+    <a class="nav-item" href="/optimisation">
+      <span class="icon">⚡</span> Optimisation
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="wallet-badge">
+      <div class="label">Wallet connecté</div>
+      <div class="addr" id="sidebarWallet">Chargement...</div>
+    </div>
+    <button class="logout-btn" onclick="logout()">⎋ Déconnexion</button>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-title">Tableau de <span>Bord</span></div>
+    <div class="topbar-right">
+      <div class="network-badge">
+        <div class="dot"></div>
+        Ganache Local · Chain 1337
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card teal">
+        <div class="stat-label">Solde FTK</div>
+        <div class="stat-value" id="statBalance">—</div>
+        <div class="stat-sub" id="statBalanceSub">FintechToken</div>
+        <div class="stat-icon">₮</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-label">Total Transactions</div>
+        <div class="stat-value" id="statTotal">—</div>
+        <div class="stat-sub">depuis le début</div>
+        <div class="stat-icon">⇄</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Fraudes Détectées</div>
+        <div class="stat-value" id="statFraudes">—</div>
+        <div class="stat-sub" id="statFraudesSub">par l'IA</div>
+        <div class="stat-icon">⚠</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Gas Recommandé</div>
+        <div class="stat-value" id="statGas">—</div>
+        <div class="stat-sub">gwei · optimal maintenant</div>
+        <div class="stat-icon">⚡</div>
+      </div>
+    </div>
+
+    <!-- Chart + Send form -->
+    <div class="grid-3-1">
+
+      <!-- Chart transactions -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Activité des Transactions</div>
+            <div class="panel-sub">// Dernières 24 heures</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <canvas id="txChart" height="140"></canvas>
+        </div>
+      </div>
+
+      <!-- Fraud pie -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Répartition IA</div>
+            <div class="panel-sub">// Légitimes vs Fraudes</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <canvas id="fraudChart" height="140"></canvas>
+          <div class="gauge-container" style="margin-top:1rem;">
+            <div class="gauge-value" id="fraudRate">0%</div>
+            <div class="gauge-label">Taux de fraude détecté</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Send + Recent -->
+    <div class="grid-2">
+
+      <!-- Envoyer FTK -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Envoyer des FTK</div>
+            <div class="panel-sub">// Analyse IA automatique</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="send-form">
+            <div>
+              <label>Adresse Destinataire</label>
+              <input type="text" id="sendTo" placeholder="0x..." />
+            </div>
+            <div class="form-row">
+              <div>
+                <label>Montant (FTK)</label>
+                <input type="number" id="sendAmount" placeholder="100" min="0.01" step="0.01"/>
+              </div>
+              <div>
+                <label>Heure du jour</label>
+                <input type="number" id="sendHour" placeholder="14" min="0" max="23"/>
+              </div>
+            </div>
+            <button class="btn-send" id="sendBtn" onclick="sendTransaction()">
+              ⚡ Envoyer avec analyse IA
+            </button>
+            <div class="tx-result" id="txResult"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions récentes -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Transactions Récentes</div>
+            <div class="panel-sub">// Analysées par l'IA</div>
+          </div>
+          <a href="/transactions" style="font-family:var(--mono);font-size:0.7rem;color:var(--teal);text-decoration:none;">
+            Voir tout →
+          </a>
+        </div>
+        <div class="panel-body">
+          <div id="recentTxList">
+            <div class="loading">Chargement des transactions...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const token  = localStorage.getItem('token');
+  const wallet = localStorage.getItem('wallet');
+
+  // Rediriger si non connecté
+  if (!token) window.location.href = '/';
+
+  // Afficher wallet
+  if (wallet) {
+    document.getElementById('sidebarWallet').textContent =
+      wallet.slice(0,6) + '...' + wallet.slice(-4);
+  }
+
+  const headers = {
+    'Content-Type' : 'application/json',
+    'Authorization': 'Bearer ' + token
+  };
+
+  // ── Charger les stats ──────────────────────────────────────
+  async function loadStats() {
+    try {
+      // Solde FTK
+      if (wallet) {
+        const r = await fetch(`/wallet/balance/${wallet}`, { headers });
+        const d = await r.json();
+        if (r.ok) {
+          document.getElementById('statBalance').textContent =
+            parseFloat(d.balance).toLocaleString('fr-FR', {maximumFractionDigits:2});
+        }
+      }
+
+      // Stats fraude
+      const r2 = await fetch('/fraud/reports', { headers });
+      const d2 = await r2.json();
+      if (r2.ok) {
+        document.getElementById('statTotal').textContent   = d2.total_reports || '0';
+        document.getElementById('statFraudes').textContent = d2.total_blocked || '0';
+        document.getElementById('statFraudesSub').textContent = `taux: ${d2.block_ratio || '0%'}`;
+        document.getElementById('fraudRate').textContent   = d2.block_ratio || '0%';
+        updateFraudChart(d2.total_reports, d2.total_blocked);
+      }
+
+      // Gas
+      const r3 = await fetch('/optimization/gas-estimate', { headers });
+      const d3 = await r3.json();
+      if (r3.ok) {
+        document.getElementById('statGas').textContent = d3.recommended_gas_price + ' Gwei';
+      }
+
+    } catch(e) { console.error(e); }
+  }
+
+  // ── Transactions récentes ─────────────────────────────────
+  async function loadRecentTx() {
+    const container = document.getElementById('recentTxList');
+    try {
+      const r = await fetch('/transactions/recent', { headers });
+      const d = await r.json();
+
+      if (!r.ok || !d.transactions || d.transactions.length === 0) {
+        container.innerHTML = '<div class="empty">Aucune transaction pour le moment</div>';
+        return;
+      }
+
+      container.innerHTML = '<div class="tx-list">' +
+        d.transactions.slice(0,5).map(tx => {
+          const isLegit = tx.risk_level === 'LOW' || tx.risk_level === 'MEDIUM';
+          const cls     = isLegit ? 'legit' : 'fraud';
+          const emoji   = isLegit ? '✓' : '✕';
+          return `
+            <div class="tx-item">
+              <div class="tx-badge ${cls}">${emoji}</div>
+              <div class="tx-info">
+                <div class="tx-addr">${tx.receiver ? tx.receiver.slice(0,10)+'...' : 'N/A'}</div>
+                <div class="tx-time">${tx.timestamp || 'Juste maintenant'}</div>
+              </div>
+              <div>
+                <div class="tx-amount ${cls}">${parseFloat(tx.amount).toFixed(2)} FTK</div>
+                <div class="tx-risk ${tx.risk_level}" style="margin-top:0.2rem;text-align:right">
+                  ${tx.risk_level}
+                </div>
+              </div>
+            </div>`;
+        }).join('') + '</div>';
+
+    } catch(e) {
+      container.innerHTML = '<div class="empty">Erreur de chargement</div>';
+    }
+  }
+
+  // ── Graphique activité ─────────────────────────────────────
+  const txCtx = document.getElementById('txChart').getContext('2d');
+  const hours = Array.from({length:12}, (_,i) => `${(i*2).toString().padStart(2,'0')}h`);
+  new Chart(txCtx, {
+    type: 'line',
+    data: {
+      labels: hours,
+      datasets: [{
+        label: 'Légitimes',
+        data: [12,8,5,3,2,4,15,22,18,25,20,17],
+        borderColor: '#0FF4C6',
+        backgroundColor: 'rgba(15,244,198,0.08)',
+        fill: true, tension: 0.4, pointRadius: 3
+      },{
+        label: 'Fraudes',
+        data: [1,0,0,1,0,0,2,1,0,3,1,0],
+        borderColor: '#FF4D6D',
+        backgroundColor: 'rgba(255,77,109,0.08)',
+        fill: true, tension: 0.4, pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#4A5568', font: { family: 'Space Mono', size: 10 } } }
+      },
+      scales: {
+        x: { ticks: { color: '#4A5568', font:{family:'Space Mono',size:9} }, grid: { color: '#1C2A3E' } },
+        y: { ticks: { color: '#4A5568', font:{family:'Space Mono',size:9} }, grid: { color: '#1C2A3E' } }
+      }
+    }
+  });
+
+  // ── Graphique fraude ───────────────────────────────────────
+  let fraudChartInstance;
+  const fraudCtx = document.getElementById('fraudChart').getContext('2d');
+
+  function updateFraudChart(total, blocked) {
+    const legit = Math.max(0, (total||0) - (blocked||0));
+    if (fraudChartInstance) fraudChartInstance.destroy();
+    fraudChartInstance = new Chart(fraudCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Légitimes', 'Fraudes bloquées'],
+        datasets: [{
+          data: [legit || 95, blocked || 5],
+          backgroundColor: ['rgba(15,244,198,0.7)', 'rgba(255,77,109,0.7)'],
+          borderColor: ['#0FF4C6', '#FF4D6D'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: '#4A5568', font:{family:'Space Mono',size:10} } }
+        },
+        cutout: '65%'
+      }
+    });
+  }
+
+  // ── Envoyer une transaction ───────────────────────────────
+  async function sendTransaction() {
+    const btn    = document.getElementById('sendBtn');
+    const result = document.getElementById('txResult');
+    const to     = document.getElementById('sendTo').value.trim();
+    const amount = document.getElementById('sendAmount').value;
+    const hour   = document.getElementById('sendHour').value || new Date().getHours();
+
+    if (!to || !amount) {
+      result.className   = 'tx-result blocked';
+      result.style.display = 'block';
+      result.textContent   = '⚠ Remplissez tous les champs';
+      return;
+    }
+
+    btn.disabled   = true;
+    btn.textContent = '⏳ Analyse IA en cours...';
+    result.style.display = 'none';
+
+    try {
+      const r = await fetch('/transactions/send', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ receiver: to, amount: parseFloat(amount), hour_of_day: parseInt(hour) })
+      });
+      const d = await r.json();
+
+      if (r.ok && d.status === 'SUCCESS') {
+        result.className = 'tx-result success';
+        result.innerHTML =
+          `✅ Transaction envoyée avec succès\n` +
+          `Score IA     : ${d.risk_score}/100 (${d.risk_level})\n` +
+          `Gas estimé   : ${d.estimated_gas} Gwei\n` +
+          `Route score  : ${d.route_score}/100\n` +
+          `TX Hash      : ${d.optimizer_tx ? d.optimizer_tx.slice(0,20)+'...' : 'N/A'}`;
+        loadStats();
+        loadRecentTx();
+      } else {
+        result.className = 'tx-result blocked';
+        result.innerHTML =
+          `🚫 Transaction BLOQUÉE par l'IA\n` +
+          `Score risque : ${d.risk_score}/100\n` +
+          `Niveau       : ${d.risk_level}\n` +
+          `Raison       : Fraude détectée`;
+      }
+      result.style.display = 'block';
+
+    } catch(e) {
+      result.className   = 'tx-result blocked';
+      result.textContent = '⚠ Erreur serveur : ' + e.message;
+      result.style.display = 'block';
+    } finally {
+      btn.disabled    = false;
+      btn.textContent = '⚡ Envoyer avec analyse IA';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('wallet');
+    window.location.href = '/';
+  }
+
+  // Init
+  loadStats();
+  loadRecentTx();
+  updateFraudChart(95, 5);
+  setInterval(loadStats, 30000); // refresh toutes les 30s
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FintechToken — Token FTK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #080C14;
+      --surface: #0F1724;
+      --surface2:#131D2E;
+      --border:  #1C2A3E;
+      --teal:    #0FF4C6;
+      --gold:    #F5A623;
+      --red:     #FF4D6D;
+      --green:   #10B981;
+      --blue:    #0EA5E9;
+      --purple:  #8B5CF6;
+      --white:   #E8F0FE;
+      --gray:    #4A5568;
+      --gray2:   #2D3748;
+      --mono:    'Space Mono', monospace;
+      --sans:    'Syne', sans-serif;
+      --sidebar: 240px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); font-family:var(--sans); color:var(--white); min-height:100vh; display:flex; }
+
+    .sidebar {
+      width: var(--sidebar); background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+    }
+    .sidebar-logo {
+      padding: 1.5rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .sidebar-logo .icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--bg); font-weight: 700;
+    }
+    .sidebar-logo span { font-size: 1.05rem; font-weight: 800; color: var(--white); }
+    .sidebar-logo span em { color: var(--teal); font-style: normal; }
+
+    .nav { flex: 1; padding: 1rem 0; }
+    .nav-label {
+      font-family: var(--mono); font-size: 0.62rem; color: var(--gray);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.5rem 1.5rem; margin-top: 0.5rem;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.7rem 1.5rem; color: var(--gray);
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      transition: all 0.15s; cursor: pointer; border-left: 3px solid transparent;
+    }
+    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+    .nav-item.active { color: var(--teal); border-left-color: var(--teal); background: rgba(15,244,198,0.05); }
+    .nav-item .icon { font-size: 1.1rem; width: 22px; text-align: center; }
+
+    .sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); }
+    .wallet-badge {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.75rem;
+    }
+    .wallet-badge .label {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .wallet-badge .addr { font-family: var(--mono); font-size: 0.72rem; color: var(--teal); margin-top: 0.2rem; }
+    .logout-btn {
+      width: 100%; margin-top: 0.75rem; padding: 0.55rem;
+      background: transparent; border: 1px solid var(--border);
+      border-radius: 8px; color: var(--gray);
+      font-family: var(--sans); font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
+    }
+    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+    .main { margin-left: var(--sidebar); flex: 1; display: flex; flex-direction: column; }
+    .topbar {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem; display: flex; align-items: center;
+      justify-content: space-between; position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-title { font-size: 1.1rem; font-weight: 800; }
+    .topbar-title span { color: var(--teal); }
+    .network-badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 0.3rem 0.9rem;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--green);
+    }
+    .network-badge .dot {
+      width: 6px; height: 6px; background: var(--green);
+      border-radius: 50%; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    .content { padding: 2rem; flex: 1; }
+
+    /* Hero token card */
+    .token-hero {
+      background: linear-gradient(135deg, rgba(15,244,198,0.08), rgba(14,165,233,0.08));
+      border: 1px solid rgba(15,244,198,0.2);
+      border-radius: 20px; padding: 2rem;
+      display: flex; align-items: center; gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .token-icon-big {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; color: var(--bg); font-weight: 700;
+      flex-shrink: 0;
+    }
+    .token-hero-info .token-name { font-size: 1.6rem; font-weight: 800; color: var(--white); }
+    .token-hero-info .token-symbol {
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--teal); margin-top: 0.2rem;
+    }
+    .token-hero-info .token-desc {
+      font-size: 0.85rem; color: var(--gray); margin-top: 0.5rem;
+    }
+    .token-hero-balance { margin-left: auto; text-align: right; }
+    .token-hero-balance .bal-val {
+      font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--teal);
+    }
+    .token-hero-balance .bal-lbl {
+      font-family: var(--mono); font-size: 0.65rem; color: var(--gray);
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+
+    /* Grid */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+    .panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .panel-header {
+      padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .panel-title { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .panel-sub { font-family: var(--mono); font-size: 0.65rem; color: var(--gray); }
+    .panel-body { padding: 1.5rem; }
+
+    /* Info rows */
+    .info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 0; border-bottom: 1px solid rgba(28,42,62,0.5);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key { font-family: var(--mono); font-size: 0.72rem; color: var(--gray); }
+    .info-val { font-family: var(--mono); font-size: 0.78rem; color: var(--white); font-weight: 700; }
+    .info-val.teal { color: var(--teal); }
+
+    /* Check balance form */
+    .check-form { display: flex; gap: 0.75rem; }
+    .check-form input {
+      flex: 1; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.7rem 0.9rem;
+      font-family: var(--mono); font-size: 0.8rem; color: var(--white); outline: none;
+    }
+    .check-form input:focus { border-color: var(--teal); }
+    .check-form input::placeholder { color: var(--gray); }
+    .btn-check {
+      padding: 0.7rem 1.4rem;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border: none; border-radius: 8px;
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 700;
+      color: var(--bg); cursor: pointer; transition: opacity 0.2s; white-space: nowrap;
+    }
+    .btn-check:hover { opacity: 0.85; }
+    .check-result {
+      display: none; margin-top: 1rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem;
+      font-family: var(--mono); font-size: 0.8rem; color: var(--teal);
+    }
+
+    .loading {
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem; color: var(--gray); font-family: var(--mono);
+      font-size: 0.8rem; gap: 0.5rem;
+    }
+    .loading::before {
+      content: ''; width: 14px; height: 14px;
+      border: 2px solid var(--border); border-top-color: var(--teal);
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="icon">₮</div>
+    <span>Fintech<em>Token</em></span>
+  </div>
+  <nav class="nav">
+    <div class="nav-label">Principal</div>
+    <a class="nav-item" href="/dashboard"><span class="icon">◈</span> Dashboard</a>
+    <a class="nav-item" href="/transactions"><span class="icon">⇄</span> Transactions</a>
+    <a class="nav-item" href="/fraudes"><span class="icon">⚠</span> Alertes Fraude</a>
+    <div class="nav-label">Blockchain</div>
+    <a class="nav-item active" href="/token"><span class="icon">◎</span> Token FTK</a>
+    <a class="nav-item" href="/optimisation"><span class="icon">⚡</span> Optimisation</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="wallet-badge">
+      <div class="label">Wallet connecté</div>
+      <div class="addr" id="sidebarWallet">Chargement...</div>
+    </div>
+    <button class="logout-btn" onclick="logout()">⎋ Déconnexion</button>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-title">Token <span>FTK</span></div>
+    <div class="network-badge">
+      <div class="dot"></div>
+      Ganache Local · Chain 1337
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- Hero -->
+    <div class="token-hero">
+      <div class="token-icon-big">₮</div>
+      <div class="token-hero-info">
+        <div class="token-name">FintechToken</div>
+        <div class="token-symbol">FTK · ERC-20 · Ganache</div>
+        <div class="token-desc">Token natif de la plateforme Fintech GTA — utilisé pour les transactions IA sécurisées</div>
+      </div>
+      <div class="token-hero-balance">
+        <div class="bal-val" id="myBalance">—</div>
+        <div class="bal-lbl">Mon solde (FTK)</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- Infos token -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Informations du Token</div>
+            <div class="panel-sub">// Contrat ERC-20 déployé</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="info-row">
+            <div class="info-key">Symbole</div>
+            <div class="info-val teal">FTK</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Réseau</div>
+            <div class="info-val">Ganache Local</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Chain ID</div>
+            <div class="info-val">1337</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Décimales</div>
+            <div class="info-val">18</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Standard</div>
+            <div class="info-val">ERC-20</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Bonus d'inscription</div>
+            <div class="info-val teal">1 000 FTK</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vérifier solde -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Vérifier un Solde</div>
+            <div class="panel-sub">// Requête on-chain</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="check-form">
+            <input type="text" id="checkAddr" placeholder="0x... adresse wallet"/>
+            <button class="btn-check" onclick="checkBalance()">◎ Vérifier</button>
+          </div>
+          <div class="check-result" id="checkResult"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wallet connecté détails -->
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Mon Wallet</div>
+          <div class="panel-sub">// Détails du compte connecté</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="info-row">
+          <div class="info-key">Adresse complète</div>
+          <div class="info-val teal" id="fullAddr">Chargement...</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Solde FTK</div>
+          <div class="info-val" id="detailBalance">—</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Statut</div>
+          <div class="info-val" style="color:var(--green)">✓ Connecté</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const token  = localStorage.getItem('token');
+  const wallet = localStorage.getItem('wallet');
+  if (!token) window.location.href = '/';
+
+  if (wallet) {
+    document.getElementById('sidebarWallet').textContent =
+      wallet.slice(0,6) + '...' + wallet.slice(-4);
+    document.getElementById('fullAddr').textContent = wallet;
+  }
+
+  const headers = {
+    'Content-Type' : 'application/json',
+    'Authorization': 'Bearer ' + token
+  };
+
+  async function loadMyBalance() {
+    if (!wallet) return;
+    try {
+      const r = await fetch(`/wallet/balance/${wallet}`, { headers });
+      const d = await r.json();
+      if (r.ok) {
+        const bal = parseFloat(d.balance).toLocaleString('fr-FR', {maximumFractionDigits:2});
+        document.getElementById('myBalance').textContent      = bal;
+        document.getElementById('detailBalance').textContent  = bal + ' FTK';
+      }
+    } catch(e) {}
+  }
+
+  async function checkBalance() {
+    const addr   = document.getElementById('checkAddr').value.trim();
+    const result = document.getElementById('checkResult');
+    if (!addr) return;
+
+    result.style.display = 'block';
+    result.textContent   = 'Requête blockchain en cours...';
+    result.style.color   = 'var(--gray)';
+
+    try {
+      const r = await fetch(`/wallet/balance/${addr}`, { headers });
+      const d = await r.json();
+      if (r.ok) {
+        const bal = parseFloat(d.balance).toLocaleString('fr-FR', {maximumFractionDigits:4});
+        result.style.color = 'var(--teal)';
+        result.textContent = `◎ ${addr.slice(0,10)}... → ${bal} FTK`;
+      } else {
+        result.style.color = 'var(--red)';
+        result.textContent = 'Erreur : ' + (d.error || 'Adresse invalide');
+      }
+    } catch(e) {
+      result.style.color = 'var(--red)';
+      result.textContent = 'Erreur serveur';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('wallet');
+    window.location.href = '/';
+  }
+
+  loadMyBalance();
+</script>
+</body>
+</html>

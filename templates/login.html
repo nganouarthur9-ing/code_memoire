@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FintechToken — Connexion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #080C14;
+      --surface:  #0F1724;
+      --border:   #1C2A3E;
+      --teal:     #0FF4C6;
+      --gold:     #F5A623;
+      --red:      #FF4D6D;
+      --white:    #E8F0FE;
+      --gray:     #4A5568;
+      --mono:     'Space Mono', monospace;
+      --sans:     'Syne', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Animated grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(15,244,198,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,244,198,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes gridMove {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(40px); }
+    }
+
+    /* Glow blobs */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .blob-1 { width:400px; height:400px; background:var(--teal);  top:-100px; left:-100px; animation: float1 8s ease-in-out infinite; }
+    .blob-2 { width:300px; height:300px; background:var(--gold);  bottom:-50px; right:-50px; animation: float2 10s ease-in-out infinite; }
+    @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+    @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-20px)} }
+
+    .login-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 440px;
+      padding: 0 1.5rem;
+    }
+
+    /* Logo */
+    .logo {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .logo-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--teal), #0EA5E9);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 30px rgba(15,244,198,0.3);
+    }
+    .logo h1 {
+      font-family: var(--sans);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .logo h1 span { color: var(--teal); }
+    .logo p {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--gray);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .card-sub {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    /* Form */
+    .form-group { margin-bottom: 1.25rem; }
+    label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(15,244,198,0.1);
+    }
+    input::placeholder { color: var(--gray); }
+
+    .btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--teal), #0EA5E9);
+      border: none;
+      border-radius: 10px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--bg);
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .divider {
+      text-align: center;
+      margin: 1.25rem 0;
+      position: relative;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--gray);
+    }
+    .divider::before, .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: var(--border);
+    }
+    .divider::before { left: 0; }
+    .divider::after  { right: 0; }
+
+    .btn-outline {
+      width: 100%;
+      padding: 0.9rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(245,166,35,0.05); }
+
+    .error-msg {
+      background: rgba(255,77,109,0.1);
+      border: 1px solid rgba(255,77,109,0.3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .footer-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--gray);
+    }
+    .footer-link a { color: var(--teal); text-decoration: none; }
+
+    /* Loading spinner */
+    .spinner {
+      display: none;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(8,12,20,0.3);
+      border-top-color: var(--bg);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="login-wrapper">
+    <div class="logo">
+      <div class="logo-icon">₮</div>
+      <h1>Fintech<span>Token</span></h1>
+      <p>GTA · Écosystème Fintech · IA + Blockchain</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Connexion</div>
+      <div class="card-sub">// Accéder à votre tableau de bord</div>
+
+      <div class="error-msg" id="errorMsg">⚠ Identifiants incorrects</div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Adresse Email</label>
+          <input type="email" id="email" placeholder="vous@exemple.com" required />
+        </div>
+        <div class="form-group">
+          <label>Mot de passe</label>
+          <input type="password" id="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn" id="loginBtn">
+          <span id="btnText">Se connecter</span>
+          <div class="spinner" id="spinner"></div>
+        </button>
+      </form>
+
+      <div class="divider">ou</div>
+
+      <button class="btn-outline" id="metamaskBtn">
+        🦊 Connexion avec MetaMask
+      </button>
+
+      <div class="footer-link">
+        Pas encore de compte ? <a href="/register">Créer un compte</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Login classique ──────────────────────────────────────
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn     = document.getElementById('loginBtn');
+      const spinner = document.getElementById('spinner');
+      const btnText = document.getElementById('btnText');
+      const errorMsg= document.getElementById('errorMsg');
+
+      btnText.style.display  = 'none';
+      spinner.style.display  = 'block';
+      errorMsg.style.display = 'none';
+
+      try {
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email    : document.getElementById('email').value,
+            password : document.getElementById('password').value
+          })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('token',  data.access_token);
+          localStorage.setItem('wallet', data.wallet);
+          window.location.href = '/dashboard';
+        } else {
+          errorMsg.textContent   = '⚠ ' + (data.error || 'Identifiants incorrects');
+          errorMsg.style.display = 'block';
+        }
+      } catch (err) {
+        errorMsg.textContent   = '⚠ Erreur de connexion au serveur';
+        errorMsg.style.display = 'block';
+      } finally {
+        btnText.style.display = 'block';
+        spinner.style.display = 'none';
+      }
+    });
+
+    // ── Login MetaMask ───────────────────────────────────────
+    document.getElementById('metamaskBtn').addEventListener('click', async () => {
+      if (typeof window.ethereum === 'undefined') {
+        alert('MetaMask non détecté — installez MetaMask pour continuer');
+        return;
+      }
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const wallet   = accounts[0];
+
+        const res = await fetch('/auth/login-metamask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ wallet_address: wallet })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('token',  data.access_token);
+          localStorage.setItem('wallet', wallet);
+          window.location.href = '/dashboard';
+        } else {
+          alert(data.error || 'Erreur de connexion MetaMask');
+        }
+      } catch (err) {
+        alert('Connexion MetaMask annulée');
+      }
+    });
+  </script>
+</body>
+</html>
