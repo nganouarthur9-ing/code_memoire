@@ -1,0 +1,463 @@
+2026-06-15 14:21:50,110 [INFO] Base de données SQLite prête
+2026-06-15 14:21:50,960 [INFO] Modèle IA chargé
+2026-06-15 14:21:53,008 [INFO] Connexion blockchain : False
+2026-06-15 14:21:55,063 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-15 14:21:55,063 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-15 14:21:55,063 [INFO]  * Restarting with stat
+2026-06-15 14:21:56,400 [INFO] Base de données SQLite prête
+2026-06-15 14:21:57,260 [INFO] Modèle IA chargé
+2026-06-15 14:21:59,275 [INFO] Connexion blockchain : False
+2026-06-15 14:22:01,315 [WARNING]  * Debugger is active!
+2026-06-15 14:22:01,331 [INFO]  * Debugger PIN: 144-080-897
+2026-06-15 14:22:04,696 [INFO] 127.0.0.1 - - [15/Jun/2026 14:22:04] "GET / HTTP/1.1" 200 -
+2026-06-15 14:22:05,053 [INFO] 127.0.0.1 - - [15/Jun/2026 14:22:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-15 14:22:07,052 [INFO] AUDIT | REGISTER_METAMASK | email=0xda3e72d784364454d6e1e6103ea5cdf506d05b9d@metamask.local | ip=127.0.0.1 | 
+2026-06-15 14:22:07,057 [INFO] AUDIT | LOGIN_METAMASK | email=0xda3e72d784364454d6e1e6103ea5cdf506d05b9d@metamask.local | ip=127.0.0.1 | 
+2026-06-15 14:22:07,057 [INFO] 127.0.0.1 - - [15/Jun/2026 14:22:07] "POST /auth/login-metamask HTTP/1.1" 200 -
+2026-06-15 14:22:07,082 [INFO] 127.0.0.1 - - [15/Jun/2026 14:22:07] "GET /dashboard HTTP/1.1" 200 -
+2026-06-15 14:25:50,270 [INFO] Base de données SQLite prête
+2026-06-15 14:25:51,154 [INFO] Modèle IA chargé
+2026-06-15 14:25:53,183 [INFO] Connexion blockchain : False
+2026-06-15 14:25:55,233 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-15 14:25:55,234 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-15 14:25:55,234 [INFO]  * Restarting with stat
+2026-06-15 14:25:56,606 [INFO] Base de données SQLite prête
+2026-06-15 14:25:57,478 [INFO] Modèle IA chargé
+2026-06-15 14:25:59,514 [INFO] Connexion blockchain : False
+2026-06-15 14:26:01,578 [WARNING]  * Debugger is active!
+2026-06-15 14:26:01,581 [INFO]  * Debugger PIN: 144-080-897
+2026-06-15 14:26:01,680 [INFO] 127.0.0.1 - - [15/Jun/2026 14:26:01] "GET / HTTP/1.1" 200 -
+2026-06-15 14:26:01,975 [INFO] 127.0.0.1 - - [15/Jun/2026 14:26:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-15 14:26:13,494 [INFO] 127.0.0.1 - - [15/Jun/2026 14:26:13] "GET /register HTTP/1.1" 200 -
+2026-06-15 14:26:43,157 [INFO] AUDIT | REGISTER | email=nganouarthur9@gmail.com | ip=127.0.0.1 | wallet=0xDA3e72d7…
+2026-06-15 14:26:45,207 [INFO] 127.0.0.1 - - [15/Jun/2026 14:26:45] "[35m[1mPOST /auth/register HTTP/1.1[0m" 201 -
+2026-06-15 14:26:46,644 [INFO] 127.0.0.1 - - [15/Jun/2026 14:26:46] "GET /dashboard HTTP/1.1" 200 -
+2026-06-15 14:27:09,279 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:09] "GET /transactions HTTP/1.1" 200 -
+2026-06-15 14:27:11,336 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:11] "GET /fraudes HTTP/1.1" 200 -
+2026-06-15 14:27:11,336 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:11] "GET /transactions/recent HTTP/1.1" 200 -
+2026-06-15 14:27:13,204 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:13] "GET /token HTTP/1.1" 200 -
+2026-06-15 14:27:13,481 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:13] "GET /fraud/reports HTTP/1.1" 200 -
+2026-06-15 14:27:14,897 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:14] "GET /optimisation HTTP/1.1" 200 -
+2026-06-15 14:27:15,348 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:15] "[35m[1mGET /wallet/balance/0xDA3e72d784364454D6e1E6103Ea5CdF506D05B9D HTTP/1.1[0m" 500 -
+2026-06-15 14:27:17,062 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:17] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:27:47,171 [INFO] 127.0.0.1 - - [15/Jun/2026 14:27:47] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:28:15,134 [INFO] 127.0.0.1 - - [15/Jun/2026 14:28:15] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:28:45,129 [INFO] 127.0.0.1 - - [15/Jun/2026 14:28:45] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:29:15,118 [INFO] 127.0.0.1 - - [15/Jun/2026 14:29:15] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:29:45,127 [INFO] 127.0.0.1 - - [15/Jun/2026 14:29:45] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:30:15,145 [INFO] 127.0.0.1 - - [15/Jun/2026 14:30:15] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:30:45,130 [INFO] 127.0.0.1 - - [15/Jun/2026 14:30:45] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:31:21,126 [INFO] 127.0.0.1 - - [15/Jun/2026 14:31:21] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:32:21,123 [INFO] 127.0.0.1 - - [15/Jun/2026 14:32:21] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:33:21,140 [INFO] 127.0.0.1 - - [15/Jun/2026 14:33:21] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:34:21,129 [INFO] 127.0.0.1 - - [15/Jun/2026 14:34:21] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:34:34,402 [INFO] Base de données SQLite prête
+2026-06-15 14:34:35,266 [INFO] Modèle IA chargé
+2026-06-15 14:34:35,266 [INFO] Connexion blockchain : True
+2026-06-15 14:34:35,308 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-15 14:34:35,308 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-15 14:34:35,308 [INFO]  * Restarting with stat
+2026-06-15 14:34:36,639 [INFO] Base de données SQLite prête
+2026-06-15 14:34:37,453 [INFO] Modèle IA chargé
+2026-06-15 14:34:37,457 [INFO] Connexion blockchain : True
+2026-06-15 14:34:37,480 [WARNING]  * Debugger is active!
+2026-06-15 14:34:37,485 [INFO]  * Debugger PIN: 144-080-897
+2026-06-15 14:34:45,121 [INFO] 127.0.0.1 - - [15/Jun/2026 14:34:45] "GET /optimization/gas-estimate HTTP/1.1" 200 -
+2026-06-15 14:35:01,199 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:01] "GET / HTTP/1.1" 200 -
+2026-06-15 14:35:05,723 [INFO] AUDIT | LOGIN_METAMASK | email=0xda3e72d784364454d6e1e6103ea5cdf506d05b9d@metamask.local | ip=127.0.0.1 | 
+2026-06-15 14:35:05,723 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:05] "POST /auth/login-metamask HTTP/1.1" 200 -
+2026-06-15 14:35:05,739 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:05] "GET /dashboard HTTP/1.1" 200 -
+2026-06-15 14:35:12,047 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:12] "GET /transactions HTTP/1.1" 200 -
+2026-06-15 14:35:12,206 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:12] "GET /transactions/recent HTTP/1.1" 200 -
+2026-06-15 14:35:17,478 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:17] "GET /fraudes HTTP/1.1" 200 -
+2026-06-15 14:35:17,663 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:17] "GET /fraud/reports HTTP/1.1" 200 -
+2026-06-15 14:35:17,675 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:17] "GET /fraud/list HTTP/1.1" 200 -
+2026-06-15 14:35:34,684 [INFO] 127.0.0.1 - - [15/Jun/2026 14:35:34] "GET /dashboard HTTP/1.1" 200 -
+2026-06-16 11:29:37,889 [INFO] Base de données SQLite prête
+2026-06-16 11:29:46,346 [INFO] Modèle IA chargé
+2026-06-16 11:29:48,400 [INFO] Connexion blockchain : False
+2026-06-16 11:29:51,591 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-16 11:29:51,592 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-16 11:29:51,598 [INFO]  * Restarting with stat
+2026-06-16 11:29:53,068 [INFO] Base de données SQLite prête
+2026-06-16 11:29:53,952 [INFO] Modèle IA chargé
+2026-06-16 11:29:55,976 [INFO] Connexion blockchain : False
+2026-06-16 11:29:58,008 [WARNING]  * Debugger is active!
+2026-06-16 11:29:58,014 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:30:00,444 [INFO] 127.0.0.1 - - [16/Jun/2026 11:30:00] "GET / HTTP/1.1" 200 -
+2026-06-16 11:30:00,915 [INFO] 127.0.0.1 - - [16/Jun/2026 11:30:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-16 11:32:52,253 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\database.py', reloading
+2026-06-16 11:32:52,608 [INFO]  * Restarting with stat
+2026-06-16 11:32:54,103 [INFO] Base de données SQLite prête
+2026-06-16 11:32:55,001 [INFO] Modèle IA chargé
+2026-06-16 11:32:57,024 [INFO] Connexion blockchain : False
+2026-06-16 11:32:59,099 [WARNING]  * Debugger is active!
+2026-06-16 11:32:59,113 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:33:11,215 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:33:11,484 [INFO]  * Restarting with stat
+2026-06-16 11:33:13,077 [INFO] Base de données SQLite prête
+2026-06-16 11:33:13,920 [INFO] Modèle IA chargé
+2026-06-16 11:33:15,954 [INFO] Connexion blockchain : False
+2026-06-16 11:33:17,991 [WARNING]  * Debugger is active!
+2026-06-16 11:33:18,005 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:33:21,423 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:33:21,697 [INFO]  * Restarting with stat
+2026-06-16 11:33:23,184 [INFO] Base de données SQLite prête
+2026-06-16 11:33:24,037 [INFO] Modèle IA chargé
+2026-06-16 11:33:26,084 [INFO] Connexion blockchain : False
+2026-06-16 11:33:28,152 [WARNING]  * Debugger is active!
+2026-06-16 11:33:28,156 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:33:37,039 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:33:37,352 [INFO]  * Restarting with stat
+2026-06-16 11:33:38,916 [INFO] Base de données SQLite prête
+2026-06-16 11:33:39,824 [INFO] Modèle IA chargé
+2026-06-16 11:33:41,849 [INFO] Connexion blockchain : False
+2026-06-16 11:33:43,888 [WARNING]  * Debugger is active!
+2026-06-16 11:33:43,895 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:33:45,223 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:33:45,570 [INFO]  * Restarting with stat
+2026-06-16 11:33:47,222 [INFO] Base de données SQLite prête
+2026-06-16 11:33:48,308 [INFO] Modèle IA chargé
+2026-06-16 11:33:50,320 [INFO] Connexion blockchain : False
+2026-06-16 11:33:52,374 [WARNING]  * Debugger is active!
+2026-06-16 11:33:52,387 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:34:02,402 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:34:02,687 [INFO]  * Restarting with stat
+2026-06-16 11:34:04,248 [INFO] Base de données SQLite prête
+2026-06-16 11:34:05,170 [INFO] Modèle IA chargé
+2026-06-16 11:34:07,183 [INFO] Connexion blockchain : False
+2026-06-16 11:34:09,215 [WARNING]  * Debugger is active!
+2026-06-16 11:34:09,220 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:42:01,989 [INFO] Base de données SQLite prête
+2026-06-16 11:42:10,134 [INFO] Modèle IA chargé
+2026-06-16 11:42:12,208 [INFO] Connexion blockchain : False
+2026-06-16 11:44:38,608 [INFO] Base de données SQLite prête
+2026-06-16 11:44:39,516 [INFO] Modèle IA chargé
+2026-06-16 11:44:41,544 [INFO] Connexion blockchain : False
+2026-06-16 11:44:44,590 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-16 11:44:44,590 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-16 11:44:44,590 [INFO]  * Restarting with stat
+2026-06-16 11:44:45,984 [INFO] Base de données SQLite prête
+2026-06-16 11:44:46,861 [INFO] Modèle IA chargé
+2026-06-16 11:44:48,892 [INFO] Connexion blockchain : False
+2026-06-16 11:44:50,930 [WARNING]  * Debugger is active!
+2026-06-16 11:44:50,930 [INFO]  * Debugger PIN: 248-415-636
+2026-06-16 11:44:58,363 [INFO] 127.0.0.1 - - [16/Jun/2026 11:44:58] "GET /status HTTP/1.1" 200 -
+2026-06-16 11:45:11,320 [INFO] AUDIT | REGISTER | email=demo.reset@example.com | ip=127.0.0.1 | wallet=0xDA3e72d7…
+2026-06-16 11:45:13,389 [INFO] 127.0.0.1 - - [16/Jun/2026 11:45:13] "[35m[1mPOST /auth/register HTTP/1.1[0m" 201 -
+2026-06-16 11:47:23,516 [WARNING] MAIL_USERNAME/MAIL_PASSWORD non configurés — email non envoyé à demo.reset@example.com
+2026-06-16 11:47:23,529 [WARNING] AUDIT | FORGOT_PASSWORD_EMAIL_FAILED | email=demo.reset@example.com | ip=127.0.0.1 | lien=http://127.0.0.1:5000/reset-password?token=qYMj5gIw8hAGquPqSiF6BX_F-_eAjYT5c-dw1A5Mdoc
+2026-06-16 11:47:23,529 [WARNING] Lien de réinitialisation (email non envoyé) : http://127.0.0.1:5000/reset-password?token=qYMj5gIw8hAGquPqSiF6BX_F-_eAjYT5c-dw1A5Mdoc
+2026-06-16 11:47:23,530 [INFO] 127.0.0.1 - - [16/Jun/2026 11:47:23] "POST /auth/forgot-password HTTP/1.1" 200 -
+2026-06-16 11:47:48,051 [INFO] 127.0.0.1 - - [16/Jun/2026 11:47:48] "[35m[1mPOST /auth/reset-password HTTP/1.1[0m" 500 -
+2026-06-16 11:47:59,908 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\database.py', reloading
+2026-06-16 11:48:00,224 [INFO]  * Restarting with stat
+2026-06-16 11:48:00,475 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\database.py', reloading
+2026-06-16 11:48:00,790 [INFO]  * Restarting with stat
+2026-06-16 11:48:01,927 [INFO] Base de données SQLite prête
+2026-06-16 11:48:02,420 [INFO] Base de données SQLite prête
+2026-06-16 11:48:02,909 [INFO] Modèle IA chargé
+2026-06-16 11:48:03,440 [INFO] Modèle IA chargé
+2026-06-16 11:48:04,954 [INFO] Connexion blockchain : False
+2026-06-16 11:48:05,471 [INFO] Connexion blockchain : False
+2026-06-16 11:48:06,982 [WARNING]  * Debugger is active!
+2026-06-16 11:48:06,997 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:48:07,557 [WARNING]  * Debugger is active!
+2026-06-16 11:48:07,558 [INFO]  * Debugger PIN: 248-415-636
+2026-06-16 11:48:18,644 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:48:18,911 [INFO]  * Restarting with stat
+2026-06-16 11:48:19,170 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\app.py', reloading
+2026-06-16 11:48:19,475 [INFO]  * Restarting with stat
+2026-06-16 11:48:20,523 [INFO] Base de données SQLite prête
+2026-06-16 11:48:21,071 [INFO] Base de données SQLite prête
+2026-06-16 11:48:21,548 [INFO] Modèle IA chargé
+2026-06-16 11:48:22,013 [INFO] Modèle IA chargé
+2026-06-16 11:48:23,571 [INFO] Connexion blockchain : False
+2026-06-16 11:48:24,023 [INFO] Connexion blockchain : False
+2026-06-16 11:48:25,619 [WARNING]  * Debugger is active!
+2026-06-16 11:48:25,625 [INFO]  * Debugger PIN: 248-415-636
+2026-06-16 11:48:26,062 [WARNING]  * Debugger is active!
+2026-06-16 11:48:26,076 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 11:48:26,298 [INFO] 127.0.0.1 - - [16/Jun/2026 11:48:26] "GET / HTTP/1.1" 200 -
+2026-06-16 11:48:32,045 [INFO] 127.0.0.1 - - [16/Jun/2026 11:48:32] "GET /forgot-password HTTP/1.1" 200 -
+2026-06-16 11:49:00,904 [INFO] Base de données SQLite prête
+2026-06-16 11:49:01,972 [INFO] Modèle IA chargé
+2026-06-16 11:49:04,001 [INFO] Connexion blockchain : False
+2026-06-16 11:49:07,063 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-16 11:49:07,063 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-16 11:49:07,066 [INFO]  * Restarting with stat
+2026-06-16 11:49:08,960 [INFO] Base de données SQLite prête
+2026-06-16 11:49:09,940 [INFO] Modèle IA chargé
+2026-06-16 11:49:11,967 [INFO] Connexion blockchain : False
+2026-06-16 11:49:14,000 [WARNING]  * Debugger is active!
+2026-06-16 11:49:14,004 [INFO]  * Debugger PIN: 248-415-636
+2026-06-16 11:49:24,037 [INFO] 127.0.0.1 - - [16/Jun/2026 11:49:24] "GET /status HTTP/1.1" 200 -
+2026-06-16 11:53:04,387 [INFO] AUDIT | RESET_PASSWORD_SUCCESS | email=demo.reset@example.com | ip=127.0.0.1 | 
+2026-06-16 11:53:04,393 [INFO] 127.0.0.1 - - [16/Jun/2026 11:53:04] "POST /auth/reset-password HTTP/1.1" 200 -
+2026-06-16 11:53:16,037 [INFO] AUDIT | LOGIN | email=demo.reset@example.com | ip=127.0.0.1 | 
+2026-06-16 11:53:16,039 [INFO] 127.0.0.1 - - [16/Jun/2026 11:53:16] "POST /auth/login HTTP/1.1" 200 -
+2026-06-16 11:54:27,788 [WARNING] AUDIT | RESET_PASSWORD_INVALID | email=None | ip=127.0.0.1 | Token invalide, utilisé ou expiré
+2026-06-16 11:54:27,788 [INFO] 127.0.0.1 - - [16/Jun/2026 11:54:27] "[31m[1mPOST /auth/reset-password HTTP/1.1[0m" 400 -
+2026-06-16 11:54:36,885 [INFO] 127.0.0.1 - - [16/Jun/2026 11:54:36] "GET /forgot-password HTTP/1.1" 200 -
+2026-06-16 11:54:40,107 [INFO] 127.0.0.1 - - [16/Jun/2026 11:54:40] "GET / HTTP/1.1" 200 -
+2026-06-16 11:56:19,453 [INFO] Base de données SQLite prête
+2026-06-16 11:56:20,427 [INFO] Modèle IA chargé
+2026-06-16 11:56:22,457 [INFO] Connexion blockchain : False
+2026-06-16 12:07:54,751 [INFO] 127.0.0.1 - - [16/Jun/2026 12:07:54] "GET / HTTP/1.1" 200 -
+2026-06-16 12:07:57,434 [INFO] 127.0.0.1 - - [16/Jun/2026 12:07:57] "GET /forgot-password HTTP/1.1" 200 -
+2026-06-16 12:11:18,039 [INFO] Base de données SQLite prête
+2026-06-16 12:11:19,040 [INFO] Modèle IA chargé
+2026-06-16 12:11:21,067 [INFO] Connexion blockchain : False
+2026-06-16 12:11:24,328 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-16 12:11:24,328 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-16 12:11:24,328 [INFO]  * Restarting with stat
+2026-06-16 12:11:25,762 [INFO] Base de données SQLite prête
+2026-06-16 12:11:26,671 [INFO] Modèle IA chargé
+2026-06-16 12:11:28,715 [INFO] Connexion blockchain : False
+2026-06-16 12:11:30,747 [WARNING]  * Debugger is active!
+2026-06-16 12:11:30,763 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 12:11:47,392 [INFO] 127.0.0.1 - - [16/Jun/2026 12:11:47] "GET /register HTTP/1.1" 200 -
+2026-06-16 12:12:12,234 [WARNING] AUDIT | REGISTER_DUPLICATE | email=nganouarthur9@gmail.com | ip=127.0.0.1 | Email déjà utilisé
+2026-06-16 12:12:12,234 [INFO] 127.0.0.1 - - [16/Jun/2026 12:12:12] "[31m[1mPOST /auth/register HTTP/1.1[0m" 409 -
+2026-06-16 12:12:22,170 [INFO] 127.0.0.1 - - [16/Jun/2026 12:12:22] "GET / HTTP/1.1" 200 -
+2026-06-16 12:12:24,616 [INFO] 127.0.0.1 - - [16/Jun/2026 12:12:24] "GET /forgot-password HTTP/1.1" 200 -
+2026-06-16 12:12:31,751 [ERROR] Échec envoi email à nganouarthur9@gmail.com : (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4606f2c3782sm38909898f8f.25 - gsmtp')
+2026-06-16 12:12:31,767 [WARNING] AUDIT | FORGOT_PASSWORD_EMAIL_FAILED | email=nganouarthur9@gmail.com | ip=127.0.0.1 | lien=http://127.0.0.1:5000/reset-password?token=IGOLY5njRMlQlB-AxRhAKWxEOYPsoJ8yitnBSdp3Gl8
+2026-06-16 12:12:31,770 [WARNING] Lien de réinitialisation (email non envoyé) : http://127.0.0.1:5000/reset-password?token=IGOLY5njRMlQlB-AxRhAKWxEOYPsoJ8yitnBSdp3Gl8
+2026-06-16 12:12:31,770 [INFO] 127.0.0.1 - - [16/Jun/2026 12:12:31] "POST /auth/forgot-password HTTP/1.1" 200 -
+2026-06-16 12:18:01,019 [INFO] 127.0.0.1 - - [16/Jun/2026 12:18:01] "GET / HTTP/1.1" 200 -
+2026-06-16 12:18:07,987 [INFO] 127.0.0.1 - - [16/Jun/2026 12:18:07] "GET /forgot-password HTTP/1.1" 200 -
+2026-06-16 12:18:15,821 [ERROR] Échec envoi email à nganouarthur9@gmail.com : (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4606f26392esm42856149f8f.3 - gsmtp')
+2026-06-16 12:18:15,828 [WARNING] AUDIT | FORGOT_PASSWORD_EMAIL_FAILED | email=nganouarthur9@gmail.com | ip=127.0.0.1 | lien=http://127.0.0.1:5000/reset-password?token=Os1W397P70IkA3Qo-hBT6pOUtl-RdOQ-jH8zsi-8VFw
+2026-06-16 12:18:15,828 [WARNING] Lien de réinitialisation (email non envoyé) : http://127.0.0.1:5000/reset-password?token=Os1W397P70IkA3Qo-hBT6pOUtl-RdOQ-jH8zsi-8VFw
+2026-06-16 12:18:15,828 [INFO] 127.0.0.1 - - [16/Jun/2026 12:18:15] "POST /auth/forgot-password HTTP/1.1" 200 -
+2026-06-16 12:44:54,702 [ERROR] Échec envoi email à nganouarthur9@gmail.com : (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4922fa3a4easm74082265e9.3 - gsmtp')
+2026-06-16 12:44:54,717 [WARNING] AUDIT | FORGOT_PASSWORD_EMAIL_FAILED | email=nganouarthur9@gmail.com | ip=127.0.0.1 | lien=http://127.0.0.1:5000/reset-password?token=xGbkcePb50VZ6ti2Ld8rPpGQlPVfKp3XDUEEU3ZusNY
+2026-06-16 12:44:54,717 [WARNING] Lien de réinitialisation (email non envoyé) : http://127.0.0.1:5000/reset-password?token=xGbkcePb50VZ6ti2Ld8rPpGQlPVfKp3XDUEEU3ZusNY
+2026-06-16 12:44:54,717 [INFO] 127.0.0.1 - - [16/Jun/2026 12:44:54] "POST /auth/forgot-password HTTP/1.1" 200 -
+2026-06-16 13:07:17,535 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\reset_db.py', reloading
+2026-06-16 13:07:18,000 [INFO]  * Restarting with stat
+2026-06-16 13:07:18,152 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\reset_db.py', reloading
+2026-06-16 13:07:18,153 [INFO]  * Detected change in 'C:\\Users\\Arthur Nganou\\Code\\projet memoire\\Code python\\reset_db.py', reloading
+2026-06-16 13:07:30,731 [INFO] Base de données SQLite prête
+2026-06-16 13:07:37,430 [INFO] Modèle IA chargé
+2026-06-16 13:07:39,487 [INFO] Connexion blockchain : False
+2026-06-16 13:07:41,659 [WARNING]  * Debugger is active!
+2026-06-16 13:07:41,659 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 13:19:13,760 [INFO] 127.0.0.1 - - [16/Jun/2026 13:19:13] "GET / HTTP/1.1" 200 -
+2026-06-16 13:19:15,274 [INFO] AUDIT | LOGIN_METAMASK | email=0xda3e72d784364454d6e1e6103ea5cdf506d05b9d@metamask.local | ip=127.0.0.1 | 
+2026-06-16 13:19:15,274 [INFO] 127.0.0.1 - - [16/Jun/2026 13:19:15] "POST /auth/login-metamask HTTP/1.1" 200 -
+2026-06-16 13:19:15,343 [INFO] 127.0.0.1 - - [16/Jun/2026 13:19:15] "GET /dashboard HTTP/1.1" 200 -
+2026-06-16 13:22:57,398 [INFO] Base de données SQLite prête
+2026-06-16 13:22:58,244 [INFO] Modèle IA chargé
+2026-06-16 13:23:00,309 [INFO] Connexion blockchain : False
+2026-06-16 13:23:03,437 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-16 13:23:03,437 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-16 13:23:03,437 [INFO]  * Restarting with stat
+2026-06-16 13:23:04,987 [INFO] Base de données SQLite prête
+2026-06-16 13:23:05,923 [INFO] Modèle IA chargé
+2026-06-16 13:23:07,952 [INFO] Connexion blockchain : False
+2026-06-16 13:23:10,020 [WARNING]  * Debugger is active!
+2026-06-16 13:23:10,024 [INFO]  * Debugger PIN: 144-080-897
+2026-06-16 13:23:13,030 [INFO] 127.0.0.1 - - [16/Jun/2026 13:23:13] "GET /register HTTP/1.1" 200 -
+2026-06-16 13:23:20,512 [INFO] 127.0.0.1 - - [16/Jun/2026 13:23:20] "GET /forgot-password HTTP/1.1" 200 -
+2026-06-16 13:23:29,367 [INFO] AUDIT | FORGOT_PASSWORD_SENT | email=nganouarthur9@gmail.com | ip=127.0.0.1 | 
+2026-06-16 13:23:29,367 [INFO] 127.0.0.1 - - [16/Jun/2026 13:23:29] "POST /auth/forgot-password HTTP/1.1" 200 -
+2026-06-16 13:34:08,267 [INFO] 127.0.0.1 - - [16/Jun/2026 13:34:08] "GET / HTTP/1.1" 200 -
+2026-06-18 10:07:27,085 [INFO] Migration : colonne 'role' ajoutée à users
+2026-06-18 10:07:27,092 [INFO] Migration : colonne 'email_sent' ajoutée à fraud_alerts
+2026-06-18 10:07:27,114 [INFO] Bloc genèse de la chaîne d'audit créé
+2026-06-18 10:07:27,114 [INFO] Base de données SQLite prête
+2026-06-18 10:07:34,647 [INFO] Modèle IA chargé
+2026-06-18 10:07:36,703 [INFO] Connexion blockchain : False
+2026-06-18 10:07:38,925 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-18 10:07:38,926 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-18 10:07:38,934 [INFO]  * Restarting with stat
+2026-06-18 10:07:40,275 [INFO] Base de données SQLite prête
+2026-06-18 10:07:41,080 [INFO] Modèle IA chargé
+2026-06-18 10:07:43,129 [INFO] Connexion blockchain : False
+2026-06-18 10:07:45,196 [WARNING]  * Debugger is active!
+2026-06-18 10:07:45,212 [INFO]  * Debugger PIN: 144-080-897
+2026-06-18 10:08:10,600 [INFO] 127.0.0.1 - - [18/Jun/2026 10:08:10] "GET / HTTP/1.1" 200 -
+2026-06-18 10:08:12,188 [INFO] 127.0.0.1 - - [18/Jun/2026 10:08:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-18 10:08:36,387 [INFO] 127.0.0.1 - - [18/Jun/2026 10:08:36] "GET / HTTP/1.1" 200 -
+2026-06-18 10:08:37,868 [INFO] 127.0.0.1 - - [18/Jun/2026 10:08:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-18 10:08:57,196 [WARNING] AUDIT | LOGIN_FAILED | email=nganouarthur9@gmail.com | ip=127.0.0.1 | Tentative 1/5
+2026-06-18 10:08:57,196 [INFO] 127.0.0.1 - - [18/Jun/2026 10:08:57] "[31m[1mPOST /auth/login HTTP/1.1[0m" 401 -
+2026-06-18 10:09:07,507 [WARNING] AUDIT | LOGIN_FAILED | email=nganouarthur9@gmail.com | ip=127.0.0.1 | Tentative 2/5
+2026-06-18 10:09:07,507 [INFO] 127.0.0.1 - - [18/Jun/2026 10:09:07] "[31m[1mPOST /auth/login HTTP/1.1[0m" 401 -
+2026-06-18 10:10:01,766 [INFO] Super admin créé : nganouarthur9@gmail.com
+2026-06-18 10:10:01,781 [INFO] Bloc genèse de la chaîne d'audit créé
+2026-06-18 10:10:01,781 [INFO] Base de données SQLite prête
+2026-06-18 10:10:02,730 [INFO] Modèle IA chargé
+2026-06-18 10:10:04,760 [INFO] Connexion blockchain : False
+2026-06-18 10:10:06,805 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-18 10:10:06,805 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-18 10:10:06,805 [INFO]  * Restarting with stat
+2026-06-18 10:10:08,995 [INFO] Base de données SQLite prête
+2026-06-18 10:10:10,157 [INFO] Modèle IA chargé
+2026-06-18 10:10:12,202 [INFO] Connexion blockchain : False
+2026-06-18 10:10:14,251 [WARNING]  * Debugger is active!
+2026-06-18 10:10:14,251 [INFO]  * Debugger PIN: 144-080-897
+2026-06-18 10:10:14,362 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:14] "GET / HTTP/1.1" 200 -
+2026-06-18 10:10:14,730 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-18 10:10:22,822 [INFO] AUDIT | LOGIN | email=nganouarthur9@gmail.com | ip=127.0.0.1 | 
+2026-06-18 10:10:22,844 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:22] "POST /auth/login HTTP/1.1" 200 -
+2026-06-18 10:10:22,864 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:22] "GET /superadmin HTTP/1.1" 200 -
+2026-06-18 10:10:23,057 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:23] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:10:23,065 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:23] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:10:23,066 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:23] "GET /superadmin/api/users HTTP/1.1" 200 -
+2026-06-18 10:10:23,074 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:23] "GET /superadmin/api/chain?limit=15 HTTP/1.1" 200 -
+2026-06-18 10:10:23,075 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:23] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:10:38,053 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:38] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:10:38,054 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:38] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:10:38,057 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:38] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:10:53,046 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:53] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:10:53,046 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:53] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:10:53,054 [INFO] 127.0.0.1 - - [18/Jun/2026 10:10:53] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:11:08,048 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:08] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:11:08,048 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:08] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:11:08,050 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:08] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:11:23,055 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:23] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:11:23,055 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:23] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:11:23,055 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:23] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:11:38,046 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:38] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:11:38,046 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:38] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:11:38,053 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:38] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:11:41,713 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:41] "GET /superadmin HTTP/1.1" 200 -
+2026-06-18 10:11:41,822 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:41] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:11:41,824 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:41] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:11:41,832 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:41] "GET /superadmin/api/users HTTP/1.1" 200 -
+2026-06-18 10:11:41,833 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:41] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:11:41,834 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:41] "GET /superadmin/api/chain?limit=15 HTTP/1.1" 200 -
+2026-06-18 10:11:56,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:56] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:11:56,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:56] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:11:56,826 [INFO] 127.0.0.1 - - [18/Jun/2026 10:11:56] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:12:11,830 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:11] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:12:11,830 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:11] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:12:11,830 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:11] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:12:26,821 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:26] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:12:26,821 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:26] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:12:26,821 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:26] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:12:41,818 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:41] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:12:41,818 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:41] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:12:41,825 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:41] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:12:56,823 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:56] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:12:56,823 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:56] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:12:56,823 [INFO] 127.0.0.1 - - [18/Jun/2026 10:12:56] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:13:11,821 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:11] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:13:11,827 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:11] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:13:11,827 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:11] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:13:26,818 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:26] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:13:26,818 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:26] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:13:26,818 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:26] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:13:41,823 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:41] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:13:41,823 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:41] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:13:41,830 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:41] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:13:56,820 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:56] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:13:56,828 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:56] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:13:56,829 [INFO] 127.0.0.1 - - [18/Jun/2026 10:13:56] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:14:11,817 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:11] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:14:11,825 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:11] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:14:11,827 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:11] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:14:26,822 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:26] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:14:26,829 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:26] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:14:26,829 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:26] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:14:41,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:41] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:14:41,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:41] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:14:41,828 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:41] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:14:56,817 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:56] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:14:56,817 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:56] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:14:56,817 [INFO] 127.0.0.1 - - [18/Jun/2026 10:14:56] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:15:11,822 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:11] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:15:11,828 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:11] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:15:11,828 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:11] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:15:26,875 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:26] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:15:26,882 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:26] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:15:26,882 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:26] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:15:41,817 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:41] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:15:41,825 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:41] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:15:41,825 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:41] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:15:56,821 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:56] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:15:56,828 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:56] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:15:56,828 [INFO] 127.0.0.1 - - [18/Jun/2026 10:15:56] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:16:11,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:11] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:16:11,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:11] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:16:11,819 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:11] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:16:26,816 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:26] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:16:26,823 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:26] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:16:26,824 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:26] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:16:37,619 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:37] "GET / HTTP/1.1" 200 -
+2026-06-18 10:16:40,923 [INFO] AUDIT | LOGIN | email=nganouarthur9@gmail.com | ip=127.0.0.1 | 
+2026-06-18 10:16:40,930 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:40] "POST /auth/login HTTP/1.1" 200 -
+2026-06-18 10:16:40,944 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:40] "GET /superadmin HTTP/1.1" 200 -
+2026-06-18 10:16:41,098 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:41] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:16:41,100 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:41] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:16:41,105 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:41] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:16:41,105 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:41] "GET /superadmin/api/users HTTP/1.1" 200 -
+2026-06-18 10:16:41,111 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:41] "GET /superadmin/api/chain?limit=15 HTTP/1.1" 200 -
+2026-06-18 10:16:56,091 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:56] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:16:56,091 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:56] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:16:56,095 [INFO] 127.0.0.1 - - [18/Jun/2026 10:16:56] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:17:11,099 [INFO] 127.0.0.1 - - [18/Jun/2026 10:17:11] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:17:11,099 [INFO] 127.0.0.1 - - [18/Jun/2026 10:17:11] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:17:11,099 [INFO] 127.0.0.1 - - [18/Jun/2026 10:17:11] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:26:21,050 [INFO] Base de données SQLite prête
+2026-06-18 10:26:21,919 [INFO] Modèle IA chargé
+2026-06-18 10:26:23,979 [INFO] Connexion blockchain : False
+2026-06-18 10:26:26,028 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.190:5000
+2026-06-18 10:26:26,031 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-18 10:26:26,032 [INFO]  * Restarting with stat
+2026-06-18 10:26:27,694 [INFO] Base de données SQLite prête
+2026-06-18 10:26:28,650 [INFO] Modèle IA chargé
+2026-06-18 10:26:30,688 [INFO] Connexion blockchain : False
+2026-06-18 10:26:32,732 [WARNING]  * Debugger is active!
+2026-06-18 10:26:32,745 [INFO]  * Debugger PIN: 144-080-897
+2026-06-18 10:26:32,937 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:32] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:26:32,949 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:32] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:26:32,952 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:32] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:26:32,952 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:32] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:26:35,044 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:35] "GET / HTTP/1.1" 200 -
+2026-06-18 10:26:35,499 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-18 10:26:38,888 [INFO] AUDIT | LOGIN | email=nganouarthur9@gmail.com | ip=127.0.0.1 | 
+2026-06-18 10:26:38,902 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:38] "POST /auth/login HTTP/1.1" 200 -
+2026-06-18 10:26:38,919 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:38] "GET /superadmin HTTP/1.1" 200 -
+2026-06-18 10:26:39,026 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:39] "GET /superadmin/api/transactions?limit=30 HTTP/1.1" 200 -
+2026-06-18 10:26:39,029 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:39] "GET /superadmin/api/alerts?limit=20 HTTP/1.1" 200 -
+2026-06-18 10:26:39,037 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:39] "GET /superadmin/api/users HTTP/1.1" 200 -
+2026-06-18 10:26:39,038 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:39] "GET /superadmin/api/stats HTTP/1.1" 200 -
+2026-06-18 10:26:39,039 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:39] "GET /superadmin/api/chain?limit=15 HTTP/1.1" 200 -
+2026-06-18 10:26:52,194 [INFO] 127.0.0.1 - - [18/Jun/2026 10:26:52] "GET /dashboard HTTP/1.1" 200 -

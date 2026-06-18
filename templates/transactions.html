@@ -3,95 +3,87 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FintechToken — Transactions</title>
+  <title>GTA-IT Fintech — Transactions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:      #080C14;
-      --surface: #0F1724;
-      --surface2:#131D2E;
-      --border:  #1C2A3E;
-      --teal:    #0FF4C6;
-      --gold:    #F5A623;
-      --red:     #FF4D6D;
-      --green:   #10B981;
-      --blue:    #0EA5E9;
-      --purple:  #8B5CF6;
-      --white:   #E8F0FE;
-      --gray:    #4A5568;
-      --gray2:   #2D3748;
+      --bg:      #F5F7FA;
+      --surface: #FFFFFF;
+      --surface2:#F9FAFB;
+      --border:  #E2E8F0;
+      --primary: #CC0000;
+      --primary2:#990000;
+      --accent:  #E53E3E;
+      --teal:    #CC0000;
+      --gold:    #D97706;
+      --red:     #CC0000;
+      --green:   #059669;
+      --blue:    #2563EB;
+      --purple:  #7C3AED;
+      --dark:    #1A202C;
+      --text:    #2D3748;
+      --gray:    #718096;
+      --gray2:   #CBD5E0;
       --mono:    'Space Mono', monospace;
       --sans:    'Syne', sans-serif;
       --sidebar: 240px;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:var(--bg); font-family:var(--sans); color:var(--white); min-height:100vh; display:flex; }
+    body { background:var(--bg); font-family:var(--sans); color:var(--dark); min-height:100vh; display:flex; }
 
-    /* SIDEBAR */
     .sidebar {
       width: var(--sidebar);
       background: var(--surface);
       border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0; left: 0; bottom: 0;
-      z-index: 100;
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.05);
     }
-    .sidebar-logo {
-      padding: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+    .sidebar-logo { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .logo-mark { display: inline-flex; align-items: center; gap: 0; margin-bottom: 0.25rem; }
+    .logo-gta {
+      background: var(--primary); color: #fff;
+      font-family: var(--sans); font-size: 1.15rem; font-weight: 800;
+      padding: 0.2rem 0.5rem; border-radius: 4px 0 0 4px;
+      letter-spacing: -0.01em; line-height: 1.3;
     }
-    .sidebar-logo .icon {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--teal), var(--blue));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; color: var(--bg); font-weight: 700;
+    .logo-sep {
+      background: var(--dark); color: #fff;
+      font-family: var(--sans); font-size: 1.15rem; font-weight: 800;
+      padding: 0.2rem 0.2rem; line-height: 1.3;
     }
-    .sidebar-logo span { font-size: 1.05rem; font-weight: 800; color: var(--white); }
-    .sidebar-logo span em { color: var(--teal); font-style: normal; }
+    .logo-it {
+      background: var(--dark); color: #fff;
+      font-family: var(--sans); font-size: 1.15rem; font-weight: 800;
+      padding: 0.2rem 0.5rem; border-radius: 0 4px 4px 0;
+      letter-spacing: -0.01em; line-height: 1.3;
+    }
+    .logo-sub {
+      font-family: var(--mono); font-size: 0.58rem; color: var(--gray);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;
+    }
 
     .nav { flex: 1; padding: 1rem 0; }
     .nav-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--gray);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.5rem;
-      margin-top: 0.5rem;
+      font-family: var(--mono); font-size: 0.62rem; color: var(--gray2);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.5rem 1.5rem; margin-top: 0.5rem;
     }
     .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.7rem 1.5rem;
-      color: var(--gray);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.15s;
-      cursor: pointer;
-      border-left: 3px solid transparent;
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.7rem 1.5rem; color: var(--gray);
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      transition: all 0.15s; cursor: pointer; border-left: 3px solid transparent;
     }
-    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); }
-    .nav-item.active { color: var(--teal); border-left-color: var(--teal); background: rgba(15,244,198,0.05); }
+    .nav-item:hover { color: var(--dark); background: rgba(0,0,0,0.03); }
+    .nav-item.active { color: var(--primary); border-left-color: var(--primary); background: rgba(204,0,0,0.05); }
     .nav-item .icon { font-size: 1.1rem; width: 22px; text-align: center; }
 
-    .sidebar-footer {
-      padding: 1.25rem 1.5rem;
-      border-top: 1px solid var(--border);
-    }
+    .sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); }
     .wallet-badge {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.75rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.75rem;
     }
     .wallet-badge .label {
       font-family: var(--mono); font-size: 0.62rem;
@@ -99,7 +91,7 @@
     }
     .wallet-badge .addr {
       font-family: var(--mono); font-size: 0.72rem;
-      color: var(--teal); margin-top: 0.2rem;
+      color: var(--primary); margin-top: 0.2rem;
     }
     .logout-btn {
       width: 100%; margin-top: 0.75rem; padding: 0.55rem;
@@ -108,17 +100,17 @@
       font-family: var(--sans); font-size: 0.8rem;
       cursor: pointer; transition: all 0.15s;
     }
-    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+    .logout-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-    /* MAIN */
     .main { margin-left: var(--sidebar); flex: 1; display: flex; flex-direction: column; }
     .topbar {
       background: var(--surface); border-bottom: 1px solid var(--border);
       padding: 1rem 2rem; display: flex; align-items: center;
       justify-content: space-between; position: sticky; top: 0; z-index: 50;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
-    .topbar-title { font-size: 1.1rem; font-weight: 800; }
-    .topbar-title span { color: var(--teal); }
+    .topbar-title { font-size: 1.1rem; font-weight: 800; color: var(--dark); }
+    .topbar-title span { color: var(--primary); }
     .network-badge {
       display: flex; align-items: center; gap: 0.4rem;
       background: var(--bg); border: 1px solid var(--border);
@@ -133,22 +125,22 @@
 
     .content { padding: 2rem; flex: 1; }
 
-    /* Panel */
     .panel {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem;
+      border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
     .panel-header {
       padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
+      background: var(--surface2);
     }
-    .panel-title { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .panel-title { font-size: 0.9rem; font-weight: 700; color: var(--dark); }
     .panel-sub { font-family: var(--mono); font-size: 0.65rem; color: var(--gray); }
     .panel-body { padding: 1.5rem; }
 
-    /* Filters */
     .filters {
-      display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+      display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;
     }
     .filter-btn {
       padding: 0.4rem 1rem;
@@ -158,36 +150,37 @@
       cursor: pointer; transition: all 0.15s;
     }
     .filter-btn:hover, .filter-btn.active {
-      border-color: var(--teal); color: var(--teal);
+      border-color: var(--primary); color: var(--primary);
+      background: rgba(204,0,0,0.05);
     }
 
-    /* Table */
     .tx-table { width: 100%; border-collapse: collapse; }
     .tx-table th {
       font-family: var(--mono); font-size: 0.62rem;
       color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase;
       text-align: left; padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border);
+      background: var(--surface2);
     }
     .tx-table td {
       padding: 0.85rem 1rem;
-      border-bottom: 1px solid rgba(28,42,62,0.5);
+      border-bottom: 1px solid rgba(226,232,240,0.6);
       font-family: var(--mono); font-size: 0.78rem;
-      color: var(--white);
+      color: var(--dark);
     }
-    .tx-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .tx-table tr:hover td { background: rgba(0,0,0,0.015); }
     .tx-table tr:last-child td { border-bottom: none; }
 
     .badge {
       display: inline-block; padding: 0.2rem 0.6rem;
-      border-radius: 20px; font-size: 0.65rem;
+      border-radius: 20px; font-size: 0.65rem; font-weight: 700;
     }
-    .badge.LOW      { background: rgba(16,185,129,0.15); color: var(--green); }
-    .badge.MEDIUM   { background: rgba(245,166,35,0.15);  color: var(--gold); }
-    .badge.HIGH     { background: rgba(249,115,22,0.15);  color: #F97316; }
-    .badge.CRITICAL { background: rgba(255,77,109,0.15);  color: var(--red); }
-    .badge.success  { background: rgba(16,185,129,0.15);  color: var(--green); }
-    .badge.blocked  { background: rgba(255,77,109,0.15);  color: var(--red); }
+    .badge.LOW      { background: rgba(5,150,105,0.12);  color: var(--green); }
+    .badge.MEDIUM   { background: rgba(217,119,6,0.12);  color: var(--gold); }
+    .badge.HIGH     { background: rgba(249,115,22,0.12); color: #F97316; }
+    .badge.CRITICAL { background: rgba(204,0,0,0.1);     color: var(--primary); }
+    .badge.success  { background: rgba(5,150,105,0.12);  color: var(--green); }
+    .badge.blocked  { background: rgba(204,0,0,0.1);     color: var(--primary); }
 
     .addr-short { color: var(--gray); }
 
@@ -198,7 +191,7 @@
     }
     .loading::before {
       content: ''; width: 14px; height: 14px;
-      border: 2px solid var(--border); border-top-color: var(--teal);
+      border: 2px solid var(--border); border-top-color: var(--primary);
       border-radius: 50%; animation: spin 0.7s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -208,7 +201,6 @@
       font-family: var(--mono); font-size: 0.75rem; color: var(--gray);
     }
 
-    /* Stats mini */
     .stats-row {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1rem; margin-bottom: 1.5rem;
@@ -217,12 +209,11 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px; padding: 1rem 1.25rem;
       display: flex; align-items: center; gap: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
-    .mini-stat .ms-icon {
-      font-size: 1.4rem; opacity: 0.6;
-    }
+    .mini-stat .ms-icon { font-size: 1.4rem; opacity: 0.5; }
     .mini-stat .ms-val {
-      font-family: var(--mono); font-size: 1.4rem; font-weight: 700;
+      font-family: var(--mono); font-size: 1.4rem; font-weight: 700; color: var(--dark);
     }
     .mini-stat .ms-lbl {
       font-family: var(--mono); font-size: 0.62rem;
@@ -234,8 +225,10 @@
 
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <div class="icon">₮</div>
-    <span>Fintech<em>Token</em></span>
+    <div class="logo-mark">
+      <span class="logo-gta">GTA</span><span class="logo-sep">-</span><span class="logo-it">IT</span>
+    </div>
+    <div class="logo-sub">Fintech Platform</div>
   </div>
   <nav class="nav">
     <div class="nav-label">Principal</div>
@@ -266,7 +259,6 @@
 
   <div class="content">
 
-    <!-- Stats rapides -->
     <div class="stats-row">
       <div class="mini-stat">
         <div class="ms-icon">⇄</div>
@@ -283,20 +275,19 @@
         </div>
       </div>
       <div class="mini-stat">
-        <div class="ms-icon" style="color:var(--red)">✕</div>
+        <div class="ms-icon" style="color:var(--primary)">✕</div>
         <div>
-          <div class="ms-val" id="blockedTx" style="color:var(--red)">—</div>
+          <div class="ms-val" id="blockedTx" style="color:var(--primary)">—</div>
           <div class="ms-lbl">Bloquées</div>
         </div>
       </div>
     </div>
 
-    <!-- Tableau -->
     <div class="panel">
       <div class="panel-header">
         <div>
           <div class="panel-title">Historique des Transactions</div>
-          <div class="panel-sub">// Analysées par l'IA RandomForest</div>
+          <div class="panel-sub">Analysées par l'IA RandomForest</div>
         </div>
       </div>
       <div class="panel-body">
@@ -376,7 +367,7 @@
               <td><span class="badge ${tx.blocked ? 'blocked' : 'success'}">${tx.blocked ? '✕ Bloqué' : '✓ Validé'}</span></td>
               <td><span class="addr-short">${tx.sender ? tx.sender.slice(0,8)+'...'+tx.sender.slice(-4) : 'N/A'}</span></td>
               <td><span class="addr-short">${tx.receiver ? tx.receiver.slice(0,8)+'...'+tx.receiver.slice(-4) : 'N/A'}</span></td>
-              <td style="color:${tx.blocked ? 'var(--red)' : 'var(--green)'}; font-weight:700">${parseFloat(tx.amount || 0).toFixed(2)} FTK</td>
+              <td style="color:${tx.blocked ? 'var(--primary)' : 'var(--green)'}; font-weight:700">${parseFloat(tx.amount || 0).toFixed(2)} FTK</td>
               <td>${tx.risk_score || 0}/100</td>
               <td><span class="badge ${tx.risk_level}">${tx.risk_level || 'N/A'}</span></td>
               <td style="color:var(--gray)">${tx.timestamp || '—'}</td>
@@ -389,9 +380,9 @@
   function filterTx(type, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    if (type === 'all')     renderTable(allTx);
-    else if (type === 'blocked') renderTable(allTx.filter(t => t.blocked));
-    else renderTable(allTx.filter(t => !t.blocked));
+    if (type === 'all')           renderTable(allTx);
+    else if (type === 'blocked')  renderTable(allTx.filter(t => t.blocked));
+    else                          renderTable(allTx.filter(t => !t.blocked));
   }
 
   function logout() {

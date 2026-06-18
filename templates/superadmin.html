@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GTA-IT — Super Admin Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:      #F5F7FA;
+      --surface: #FFFFFF;
+      --surface2:#F9FAFB;
+      --border:  #E2E8F0;
+      --primary: #7C3AED;
+      --primary2:#6D28D9;
+      --gold:    #D97706;
+      --red:     #CC0000;
+      --green:   #059669;
+      --blue:    #2563EB;
+      --dark:    #1A202C;
+      --text:    #2D3748;
+      --gray:    #718096;
+      --gray2:   #CBD5E0;
+      --sidebar-bg: #1A202C;
+      --mono:    'Space Mono', monospace;
+      --sans:    'Syne', sans-serif;
+      --sidebar: 250px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); font-family:var(--sans); color:var(--dark); min-height:100vh; display:flex; }
+
+    /* ── SIDEBAR ADMIN (dark) ── */
+    .sidebar {
+      width: var(--sidebar);
+      background: var(--sidebar-bg);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.3);
+    }
+    .sidebar-logo {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 0.25rem;
+    }
+    .logo-gta {
+      background: var(--primary);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px 0 0 4px;
+    }
+    .logo-sep {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 0.2rem 0.2rem;
+    }
+    .logo-it {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .logo-sub {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: linear-gradient(90deg, var(--gold), #F97316);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+    }
+
+    .nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
+    .nav-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.5rem;
+      margin-top: 0.75rem;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1.5rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .nav-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-item.active { color: #fff; border-left-color: var(--gold); background: rgba(217,119,6,0.12); }
+    .nav-item .icon { font-size: 1rem; width: 20px; text-align: center; }
+    .nav-item .badge {
+      margin-left: auto;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 20px;
+      display: none;
+    }
+    .nav-item .badge.show { display: inline; }
+
+    .sidebar-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .admin-info {
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .admin-info .label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .admin-info .email {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 0.2rem;
+      word-break: break-all;
+    }
+    .logout-btn {
+      width: 100%;
+      padding: 0.55rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .logout-btn:hover { border-color: var(--red); color: #FC8181; }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .topbar-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .topbar-title span { color: var(--gold); }
+    .topbar-right { display: flex; align-items: center; gap: 1rem; }
+    .chain-status {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #68D391;
+    }
+    .chain-status .dot {
+      width: 6px; height: 6px;
+      background: #68D391;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .chain-status.invalid { color: #FC8181; }
+    .chain-status.invalid .dot { background: #FC8181; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    .refresh-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.6);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.35rem 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .refresh-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    .content { padding: 1.75rem 2rem; flex: 1; }
+
+    /* ── STATS CARDS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .stat-card.purple::before { background: linear-gradient(90deg, #7C3AED, #A855F7); }
+    .stat-card.gold::before   { background: linear-gradient(90deg, #D97706, #F97316); }
+    .stat-card.red::before    { background: linear-gradient(90deg, #CC0000, #E53E3E); }
+    .stat-card.green::before  { background: linear-gradient(90deg, #059669, #10B981); }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .stat-value {
+      font-family: var(--mono);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-sub {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gray);
+    }
+    .stat-icon {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      font-size: 1.5rem;
+      opacity: 0.1;
+    }
+
+    /* ── PANELS ── */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      margin-bottom: 1.5rem;
+    }
+    .panel-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface2);
+    }
+    .panel-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel-sub {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+    }
+    .panel-body { padding: 0; overflow-x: auto; }
+    .panel-count {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--gray);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.2rem 0.75rem;
+    }
+
+    /* ── TABLES ── */
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      padding: 0.75rem 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: left;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(0,0,0,0.02); }
+    td {
+      padding: 0.75rem 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text);
+    }
+    .mono { font-family: var(--mono); }
+
+    /* ── BADGES RISQUE ── */
+    .risk-badge {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .risk-LOW      { background: rgba(5,150,105,0.12);  color: var(--green); }
+    .risk-MEDIUM   { background: rgba(217,119,6,0.12);  color: var(--gold); }
+    .risk-HIGH     { background: rgba(249,115,22,0.15); color: #F97316; }
+    .risk-CRITICAL { background: rgba(204,0,0,0.1);     color: var(--red); }
+    .status-ok     { background: rgba(5,150,105,0.1);   color: var(--green); }
+    .status-blocked{ background: rgba(204,0,0,0.1);     color: var(--red); }
+
+    /* ── BLOCKCHAIN CHAIN ── */
+    .chain-container {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-height: 460px;
+      overflow-y: auto;
+    }
+    .chain-block {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+    .chain-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 32px;
+      flex-shrink: 0;
+    }
+    .chain-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--primary);
+      flex-shrink: 0;
+      margin-top: 1rem;
+    }
+    .chain-dot.genesis { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .chain-dot.fraud   { background: var(--red);  box-shadow: 0 0 0 2px var(--red);  }
+    .chain-dot.invalid { background: #FC8181;     box-shadow: 0 0 0 2px #FC8181;     }
+    .chain-line {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      min-height: 12px;
+    }
+    .chain-card {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin: 0.5rem 0 0.5rem 0.75rem;
+      transition: border-color 0.15s;
+    }
+    .chain-card:hover { border-color: var(--primary); }
+    .chain-card.fraud-card   { border-left: 3px solid var(--red); }
+    .chain-card.genesis-card { border-left: 3px solid var(--gold); }
+    .chain-card.invalid-card { border-left: 3px solid #FC8181; background: rgba(252,129,129,0.04); }
+    .chain-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .chain-index {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .chain-index.genesis { color: var(--gold); }
+    .chain-index.fraud   { color: var(--red); }
+    .chain-event {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      background: rgba(124,58,237,0.1);
+      color: var(--primary);
+    }
+    .chain-event.GENESIS           { background: rgba(217,119,6,0.12);  color: var(--gold); }
+    .chain-event.FRAUD_DETECTED    { background: rgba(204,0,0,0.1);     color: var(--red); }
+    .chain-event.TRANSACTION_SENT  { background: rgba(37,99,235,0.1);   color: var(--blue); }
+    .chain-event.USER_REGISTERED   { background: rgba(5,150,105,0.1);   color: var(--green); }
+    .chain-event.LOGIN             { background: rgba(124,58,237,0.1);  color: var(--primary); }
+    .chain-hash {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--gray);
+      margin-top: 0.3rem;
+    }
+    .chain-hash span { color: var(--dark); }
+    .chain-ts {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--gray2);
+      margin-top: 0.2rem;
+    }
+    .chain-valid-badge {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      margin-top: 0.3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .chain-valid-badge.ok    { color: var(--green); }
+    .chain-valid-badge.error { color: var(--red); }
+
+    /* ── LOADING / EMPTY ── */
+    .loading {
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem; color: var(--gray);
+      font-family: var(--mono); font-size: 0.8rem; gap: 0.5rem;
+    }
+    .loading::before {
+      content: '';
+      width: 14px; height: 14px;
+      border: 2px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .empty {
+      text-align: center; padding: 2.5rem;
+      font-family: var(--mono); font-size: 0.75rem; color: var(--gray);
+    }
+
+    /* ── TOAST NOTIFICATION ── */
+    .toast-container {
+      position: fixed;
+      top: 1.25rem; right: 1.25rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 360px;
+    }
+    .toast {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 4px solid var(--red);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      animation: slideIn 0.3s ease;
+    }
+    .toast .toast-title { font-weight: 700; color: #FC8181; margin-bottom: 0.3rem; font-size: 0.8rem; }
+    .toast .toast-body  { color: rgba(255,255,255,0.7); line-height: 1.5; }
+    @keyframes slideIn { from { opacity:0; transform:translateX(24px); } to { opacity:1; transform:translateX(0); } }
+
+    /* ── VERIFY BUTTON ── */
+    .verify-btn {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.3);
+      border-radius: 8px;
+      color: var(--primary);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .verify-btn:hover { background: rgba(124,58,237,0.18); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-2     { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TOAST CONTAINER ── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">
+      <span class="logo-gta">GTA</span><span class="logo-sep">-</span><span class="logo-it">IT</span>
+    </div>
+    <div class="logo-sub">Fintech Platform</div>
+    <div class="admin-badge">&#9733; SUPER ADMIN</div>
+  </div>
+
+  <nav class="nav" id="sideNav">
+    <div class="nav-label">Administration</div>
+    <a class="nav-item active" href="javascript:void(0)" data-target="sectionDashboard">
+      <span class="icon">◈</span> Dashboard Admin
+    </a>
+    <a class="nav-item" href="javascript:void(0)" data-target="sectionTx">
+      <span class="icon">⇄</span> Transactions
+      <span class="badge" id="badgeTx">0</span>
+    </a>
+    <a class="nav-item" href="javascript:void(0)" data-target="sectionAlerts">
+      <span class="icon">⚠</span> Alertes Fraude
+      <span class="badge" id="badgeAlerts">0</span>
+    </a>
+
+    <div class="nav-label">Sécurité</div>
+    <a class="nav-item" href="javascript:void(0)" data-target="sectionChain">
+      <span class="icon">⛓</span> Chaîne Blockchain
+    </a>
+    <a class="nav-item" href="javascript:void(0)" data-target="sectionUsers">
+      <span class="icon">&#9786;</span> Utilisateurs
+    </a>
+
+    <div class="nav-label">Plateforme</div>
+    <a class="nav-item" href="/dashboard">
+      <span class="icon">&#8592;</span> Vue Utilisateur
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="admin-info">
+      <div class="label">Connecté en tant que</div>
+      <div class="email" id="adminEmail">Chargement...</div>
+    </div>
+    <button class="logout-btn" onclick="logout()">&#8651; Déconnexion</button>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+  <header class="topbar">
+    <div class="topbar-title">Super Admin <span>Console</span></div>
+    <div class="topbar-right">
+      <div class="chain-status" id="chainStatusBadge">
+        <div class="dot"></div>
+        <span id="chainStatusText">Vérification...</span>
+      </div>
+      <button class="refresh-btn" onclick="loadAll()">&#8635; Actualiser</button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- Ancre dashboard -->
+    <div id="sectionDashboard"></div>
+
+    <!-- STATS ROW -->
+    <div class="stats-grid">
+      <div class="stat-card purple">
+        <div class="stat-label">Utilisateurs Totaux</div>
+        <div class="stat-value" id="statUsers">—</div>
+        <div class="stat-sub">comptes enregistrés</div>
+        <div class="stat-icon">&#9786;</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-label">Transactions Globales</div>
+        <div class="stat-value" id="statTx">—</div>
+        <div class="stat-sub" id="statTxSub">en base de données</div>
+        <div class="stat-icon">⇄</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Fraudes Bloquées</div>
+        <div class="stat-value" id="statFraud">—</div>
+        <div class="stat-sub" id="statFraudSub">par l'IA</div>
+        <div class="stat-icon">&#9888;</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Blocs Audit</div>
+        <div class="stat-value" id="statBlocks">—</div>
+        <div class="stat-sub" id="statChainSub">chaîne blockchain</div>
+        <div class="stat-icon">&#9741;</div>
+      </div>
+    </div>
+
+    <!-- TRANSACTIONS + ALERTS -->
+    <div class="grid-2" style="margin-bottom:1.5rem;">
+
+      <!-- TRANSACTIONS -->
+      <div class="panel" id="sectionTx">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">&#8680; Transactions Récentes</div>
+            <div class="panel-sub">Toutes les transactions — vue super admin</div>
+          </div>
+          <span class="panel-count" id="txCount">0</span>
+        </div>
+        <div class="panel-body">
+          <div id="txTableBody">
+            <div class="loading">Chargement...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRAUD ALERTS -->
+      <div class="panel" id="sectionAlerts">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">&#9888; Alertes de Fraude IA</div>
+            <div class="panel-sub">Menaces détectées par le modèle</div>
+          </div>
+          <span class="panel-count" id="alertCount">0</span>
+        </div>
+        <div class="panel-body">
+          <div id="alertTableBody">
+            <div class="loading">Chargement...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BLOCKCHAIN AUDIT CHAIN -->
+    <div class="panel" id="sectionChain">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">&#9741; Chaîne d'Audit Blockchain</div>
+          <div class="panel-sub">Registre immuable — hash chain cryptographique</div>
+        </div>
+        <button class="verify-btn" onclick="verifyChain()">&#10003; Vérifier l'intégrité</button>
+      </div>
+      <div class="panel-body">
+        <div class="chain-container" id="chainContainer">
+          <div class="loading">Chargement de la chaîne...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UTILISATEURS -->
+    <div class="panel" id="sectionUsers">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">&#9786; Gestion des Utilisateurs</div>
+          <div class="panel-sub">Tous les comptes de la plateforme</div>
+        </div>
+        <span class="panel-count" id="userCount">0</span>
+      </div>
+      <div class="panel-body">
+        <div id="usersTableBody">
+          <div class="loading">Chargement...</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const token = localStorage.getItem('token');
+  const role  = localStorage.getItem('role');
+  const email = localStorage.getItem('email');
+
+  // Vérification accès super admin
+  if (!token || role !== 'superadmin') {
+    window.location.href = '/';
+  }
+
+  if (email) {
+    document.getElementById('adminEmail').textContent = email;
+  }
+
+  const headers = {
+    'Content-Type' : 'application/json',
+    'Authorization': 'Bearer ' + token
+  };
+
+  let prevAlertCount = 0;
+  let prevTxCount    = 0;
+
+  // ── NAVIGATION SIDEBAR ──
+  function navScrollTo(targetId) {
+    const el = document.getElementById(targetId);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function setNavActive(clickedItem) {
+    document.querySelectorAll('#sideNav .nav-item').forEach(i => i.classList.remove('active'));
+    clickedItem.classList.add('active');
+  }
+
+  document.querySelectorAll('#sideNav .nav-item[data-target]').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      setNavActive(this);
+      navScrollTo(this.dataset.target);
+    });
+  });
+
+  // ── TOAST ──
+  function showToast(title, body) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<div class="toast-title">&#9888; ${title}</div><div class="toast-body">${body}</div>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 6000);
+  }
+
+  // ── LOAD STATS ──
+  async function loadStats() {
+    try {
+      const r = await fetch('/superadmin/api/stats', { headers });
+      if (!r.ok) return;
+      const d = await r.json();
+
+      document.getElementById('statUsers').textContent  = d.total_users  ?? '0';
+      document.getElementById('statTx').textContent     = d.total_tx     ?? '0';
+      document.getElementById('statFraud').textContent  = d.total_blocked ?? '0';
+      document.getElementById('statBlocks').textContent = d.total_blocks  ?? '0';
+      document.getElementById('statTxSub').textContent  = `taux fraude : ${d.block_ratio || '0%'}`;
+      document.getElementById('statFraudSub').textContent = `alertes : ${d.total_alerts || 0}`;
+      document.getElementById('statChainSub').textContent = d.chain_valid
+        ? '✅ intégrité vérifiée'
+        : '❌ chaîne compromise !';
+
+      // Chain status badge
+      const badge = document.getElementById('chainStatusBadge');
+      const text  = document.getElementById('chainStatusText');
+      if (d.chain_valid) {
+        badge.className = 'chain-status';
+        text.textContent = 'Chaîne intègre · ' + (d.total_blocks ?? 0) + ' blocs';
+      } else {
+        badge.className = 'chain-status invalid';
+        text.textContent = '⚠ Chaîne compromise !';
+      }
+    } catch(e) { console.error('Stats error:', e); }
+  }
+
+  // ── LOAD TRANSACTIONS ──
+  async function loadTransactions() {
+    const container = document.getElementById('txTableBody');
+    try {
+      const r = await fetch('/superadmin/api/transactions?limit=30', { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+
+      document.getElementById('txCount').textContent = d.total ?? 0;
+
+      // Badge nav
+      const badge = document.getElementById('badgeTx');
+      if (d.total > 0) { badge.textContent = d.total; badge.classList.add('show'); }
+
+      // Notification si nouvelles tx
+      if (prevTxCount > 0 && d.total > prevTxCount) {
+        showToast('Nouvelle Transaction', `${d.total - prevTxCount} nouvelle(s) transaction(s) détectée(s).`);
+      }
+      prevTxCount = d.total;
+
+      if (!d.transactions || d.transactions.length === 0) {
+        container.innerHTML = '<div class="empty">Aucune transaction en base de données</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Réf.</th>
+              <th>Expéditeur</th>
+              <th>Destinataire</th>
+              <th>Montant</th>
+              <th>Risque IA</th>
+              <th>Statut</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${d.transactions.map(tx => `
+              <tr>
+                <td style="color:var(--gray);font-size:0.65rem;">${tx.tx_ref ? tx.tx_ref.slice(0,8)+'...' : 'N/A'}</td>
+                <td>${tx.sender ? tx.sender.slice(0,8)+'...' : 'N/A'}</td>
+                <td>${tx.receiver ? tx.receiver.slice(0,8)+'...' : 'N/A'}</td>
+                <td style="font-weight:700;color:var(--dark);">${parseFloat(tx.amount).toFixed(2)} FTK</td>
+                <td><span class="risk-badge risk-${tx.risk_level}">${tx.risk_level} (${tx.risk_score})</span></td>
+                <td><span class="risk-badge ${tx.blocked ? 'status-blocked' : 'status-ok'}">${tx.blocked ? 'BLOQUÉ' : 'OK'}</span></td>
+                <td style="color:var(--gray);">${tx.timestamp ?? '—'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    } catch(e) {
+      container.innerHTML = '<div class="empty">Erreur de chargement des transactions</div>';
+    }
+  }
+
+  // ── LOAD ALERTS ──
+  async function loadAlerts() {
+    const container = document.getElementById('alertTableBody');
+    try {
+      const r = await fetch('/superadmin/api/alerts?limit=20', { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+
+      document.getElementById('alertCount').textContent = d.total ?? 0;
+
+      const badge = document.getElementById('badgeAlerts');
+      if (d.total > 0) { badge.textContent = d.total; badge.classList.add('show'); }
+
+      // Notification si nouvelles alertes
+      if (prevAlertCount > 0 && d.total > prevAlertCount) {
+        const newAlerts = d.total - prevAlertCount;
+        showToast(
+          `🚨 ${newAlerts} Nouvelle(s) Alerte(s) !`,
+          `L'IA a détecté ${newAlerts} nouvelle(s) transaction(s) frauduleuse(s). Vérifiez immédiatement.`
+        );
+      }
+      prevAlertCount = d.total;
+
+      if (!d.alerts || d.alerts.length === 0) {
+        container.innerHTML = '<div class="empty">Aucune alerte de fraude enregistrée</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Suspect (wallet)</th>
+              <th>Montant</th>
+              <th>Score</th>
+              <th>Niveau</th>
+              <th>Email Admin</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${d.alerts.map(a => `
+              <tr>
+                <td>${a.suspect ? a.suspect.slice(0,10)+'...' : 'N/A'}</td>
+                <td style="font-weight:700;color:var(--red);">${parseFloat(a.amount).toFixed(2)} FTK</td>
+                <td style="font-family:var(--mono);color:var(--red);">${a.risk_score}/100</td>
+                <td><span class="risk-badge risk-${a.risk_level}">${a.risk_level}</span></td>
+                <td>
+                  <span class="risk-badge ${a.email_sent ? 'status-ok' : 'status-blocked'}">
+                    ${a.email_sent ? '✓ Envoyé' : '✗ Non envoyé'}
+                  </span>
+                </td>
+                <td style="color:var(--gray);">${a.timestamp ?? '—'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    } catch(e) {
+      container.innerHTML = '<div class="empty">Erreur de chargement des alertes</div>';
+    }
+  }
+
+  // ── LOAD BLOCKCHAIN CHAIN ──
+  async function loadChain() {
+    const container = document.getElementById('chainContainer');
+    try {
+      const r = await fetch('/superadmin/api/chain?limit=15', { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+
+      if (!d.blocks || d.blocks.length === 0) {
+        container.innerHTML = '<div class="empty">Chaîne vide — aucun bloc enregistré</div>';
+        return;
+      }
+
+      // Les blocs arrivent en ordre décroissant (le plus récent en premier)
+      container.innerHTML = d.blocks.map((blk, i) => {
+        const isGenesis = blk.event_type === 'GENESIS';
+        const isFraud   = blk.event_type === 'FRAUD_DETECTED';
+        const dotClass  = isGenesis ? 'chain-dot genesis' : isFraud ? 'chain-dot fraud' : 'chain-dot';
+        const cardClass = isGenesis ? 'chain-card genesis-card' : isFraud ? 'chain-card fraud-card' : 'chain-card';
+        const idxClass  = isGenesis ? 'chain-index genesis' : isFraud ? 'chain-index fraud' : 'chain-index';
+        const isLast    = i === d.blocks.length - 1;
+
+        let dataPreview = '';
+        if (blk.data && typeof blk.data === 'object') {
+          const keys = Object.keys(blk.data).slice(0,2);
+          dataPreview = keys.map(k => `${k}: ${String(blk.data[k]).slice(0,20)}`).join(' · ');
+        }
+
+        return `
+          <div class="chain-block">
+            <div class="chain-connector">
+              <div class="${dotClass}"></div>
+              ${!isLast ? '<div class="chain-line"></div>' : ''}
+            </div>
+            <div class="${cardClass}">
+              <div class="chain-card-header">
+                <span class="${idxClass}">Bloc #${blk.block_index}</span>
+                <span class="chain-event ${blk.event_type}">${blk.event_type.replace(/_/g,' ')}</span>
+              </div>
+              <div class="chain-hash">Hash : <span>${blk.block_hash ? blk.block_hash.slice(0,32)+'...' : '—'}</span></div>
+              <div class="chain-hash">Prev : <span>${blk.previous_hash ? blk.previous_hash.slice(0,24)+'...' : '—'}</span></div>
+              ${dataPreview ? `<div class="chain-hash" style="color:var(--gray2);">${dataPreview}</div>` : ''}
+              <div class="chain-ts">${blk.timestamp ?? '—'}</div>
+            </div>
+          </div>`;
+      }).join('');
+    } catch(e) {
+      container.innerHTML = '<div class="empty">Erreur de chargement de la chaîne</div>';
+    }
+  }
+
+  // ── VERIFY CHAIN ──
+  async function verifyChain() {
+    const btn = document.querySelector('.verify-btn');
+    btn.textContent = '⏳ Vérification...';
+    btn.disabled = true;
+    try {
+      const r = await fetch('/superadmin/api/chain/verify', { headers });
+      const d = await r.json();
+
+      if (d.chain_valid) {
+        showToast(
+          '✅ Chaîne intègre',
+          `${d.total_blocks} bloc(s) vérifiés — aucune altération détectée.`
+        );
+      } else {
+        const broken = d.blocks.filter(b => !b.valid).length;
+        showToast(
+          '❌ Chaîne compromise !',
+          `${broken} bloc(s) invalide(s) sur ${d.total_blocks}. La chaîne a peut-être été altérée.`
+        );
+      }
+      await loadStats();
+    } catch(e) {
+      showToast('Erreur', 'Impossible de vérifier la chaîne : ' + e.message);
+    } finally {
+      btn.textContent = '✓ Vérifier l\'intégrité';
+      btn.disabled = false;
+    }
+  }
+
+  // ── LOAD USERS ──
+  async function loadUsers() {
+    const container = document.getElementById('usersTableBody');
+    try {
+      const r = await fetch('/superadmin/api/users', { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+
+      document.getElementById('userCount').textContent = d.total ?? 0;
+
+      if (!d.users || d.users.length === 0) {
+        container.innerHTML = '<div class="empty">Aucun utilisateur enregistré</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>Wallet</th>
+              <th>Rôle</th>
+              <th>Statut</th>
+              <th>Inscrit le</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${d.users.map(u => `
+              <tr>
+                <td style="color:var(--gray);">${u.id}</td>
+                <td style="color:var(--dark);">${u.email ?? '—'}</td>
+                <td style="color:var(--gray);font-size:0.68rem;">${u.wallet_address ? u.wallet_address.slice(0,12)+'...' : 'N/A'}</td>
+                <td>
+                  <span class="risk-badge ${u.role === 'superadmin' ? '' : 'status-ok'}"
+                        style="${u.role === 'superadmin' ? 'background:rgba(217,119,6,0.12);color:var(--gold);' : ''}">
+                    ${u.role === 'superadmin' ? '&#9733; SUPER ADMIN' : 'user'}
+                  </span>
+                </td>
+                <td>
+                  <span class="risk-badge ${u.is_active ? 'status-ok' : 'status-blocked'}">
+                    ${u.is_active ? 'Actif' : 'Inactif'}
+                  </span>
+                </td>
+                <td style="color:var(--gray);">${u.created_at ?? '—'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    } catch(e) {
+      container.innerHTML = '<div class="empty">Erreur de chargement des utilisateurs</div>';
+    }
+  }
+
+  // ── LOAD ALL ──
+  async function loadAll() {
+    await Promise.all([
+      loadStats(),
+      loadTransactions(),
+      loadAlerts(),
+      loadChain(),
+      loadUsers(),
+    ]);
+  }
+
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('wallet');
+    localStorage.removeItem('email');
+    localStorage.removeItem('role');
+    window.location.href = '/';
+  }
+
+  // Chargement initial
+  loadAll();
+
+  // Actualisation automatique toutes les 15 secondes
+  setInterval(() => {
+    loadStats();
+    loadTransactions();
+    loadAlerts();
+  }, 15000);
+</script>
+</body>
+</html>
